@@ -12,7 +12,7 @@ namespace Expedia
     {
         Expedia.HotelBookingServiceReference.HotelServicesClient serviceObjBook;
 
-        public HotelReservationRS MakeHotelReservation(HDSRequest request)
+        public ReservationRS MakeHotelReservation(HDSRequest request)
         {
             serviceObjBook = new Expedia.HotelBookingServiceReference.HotelServicesClient();
 

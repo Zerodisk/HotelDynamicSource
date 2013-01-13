@@ -8,7 +8,7 @@ namespace HDSInterfaces
     public class HDSProviderBase : IHDSHotelShopping, IHDSHotelBooking  
     {
         //search by location
-        public virtual SearchResultByLocationRS GetSearchResultByLocation(HDSRequest request)
+        public virtual SearchResultRS GetSearchResultByLocation(HDSRequest request)
         {
             return null;
         }
@@ -20,13 +20,13 @@ namespace HDSInterfaces
         }
 
         //rate rules (only for Orbitz)
-        public virtual HotelRateRuleRS GetHotelRateRule(HDSRequest request)
+        public virtual RateRuleRS GetHotelRateRule(HDSRequest request)
         {
             return null;
         }
 
         //reservation-booking
-        public virtual HotelReservationRS MakeHotelReservation(HDSRequest request)
+        public virtual ReservationRS MakeHotelReservation(HDSRequest request)
         {
             return null;
         }

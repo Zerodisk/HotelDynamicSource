@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HotelRateRuleRS : BaseResponse 
+    public class CreditCard
     {
     }
 }

@@ -28,4 +28,17 @@ namespace HDSInterfaces
         Reprice = 30,
         Reservation = 31
     }
+
+    public enum HDSGuestType
+    {
+        Adult = 0,
+        Child = 1,
+        Senior = 2
+    }
+
+    public enum HDSItineraryType
+    {
+        Room = 0,
+        ExtraBed = 1,
+    }
 }

@@ -17,7 +17,7 @@ namespace Expedia
             serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
         }
 
-        public SearchResultByLocationRS GetSearchResultByLocation(HDSRequest request)
+        public SearchResultRS GetSearchResultByLocation(HDSRequest request)
         {
             //create hotel list request object(HotelListRequest)
             HotelListRequest hotelListRequest = new HotelListRequest();

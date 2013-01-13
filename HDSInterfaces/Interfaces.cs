@@ -27,7 +27,7 @@ namespace HDSInterfaces
     //shopping class interface - for serach result and hotel page
     public interface IHDSHotelShopping : IHDSManager
     {
-        SearchResultByLocationRS GetSearchResultByLocation(HDSRequest request);         
+        SearchResultRS GetSearchResultByLocation(HDSRequest request);         
         /*
          * expedia -> HotelListRequest/Response
          * orbitz  -> HotelShoppingRequest/Response
@@ -44,13 +44,13 @@ namespace HDSInterfaces
     //booking class interface - for raterule(if needed) and booking
     public interface IHDSHotelBooking : IHDSManager
     {
-        HotelRateRuleRS GetHotelRateRule (HDSRequest request);
+        RateRuleRS GetHotelRateRule (HDSRequest request);
         /*
          * expedia -> doesn't seem to have one
          * orbitz  -> HotelRateRulesRequest/Response
          */ 
 
-        HotelReservationRS MakeHotelReservation (HDSRequest request);
+        ReservationRS MakeHotelReservation (HDSRequest request);
         /*
          * expedia -> HotelRoomReservationRequest/Response
          * orbitz  -> HotelReservationRequest

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class SearchResultByLocationRS : BaseResponse 
+    public class Amenities : Identification 
     {
+        public string Description { get; set; }
     }
 }

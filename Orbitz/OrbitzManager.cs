@@ -8,7 +8,7 @@ namespace Orbitz
 {
     public class OrbitzManager : HDSProviderBase 
     {
-        public override SearchResultByLocationRS GetSearchResultByLocation(HDSRequest request)
+        public override SearchResultRS GetSearchResultByLocation(HDSRequest request)
         {
             return null;
         }
@@ -18,12 +18,12 @@ namespace Orbitz
             return null;
         }
 
-        public override HotelRateRuleRS GetHotelRateRule(HDSRequest request)
+        public override RateRuleRS GetHotelRateRule(HDSRequest request)
         {
             return null;
         }
 
-        public override HotelReservationRS MakeHotelReservation(HDSRequest request)
+        public override ReservationRS MakeHotelReservation(HDSRequest request)
         {
             return null;
         }

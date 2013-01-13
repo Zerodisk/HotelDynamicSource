@@ -11,11 +11,11 @@ namespace HDSInterfaces
         public HDSRequestType RequestType { get; set; }
 
         //session information of the requester (customer ip address, browser user agent, session id, locale and currency)     
-        public HDSSession Session { get; set; }
+        public Session Session { get; set; }
 
         public BaseRequest()
         {
-            Session = new HDSSession();
+            Session = new Session();
         }
 
     }

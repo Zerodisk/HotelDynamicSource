@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HotelReservationRS : BaseResponse 
+    public class BaseHotel : Identification
     {
     }
 }

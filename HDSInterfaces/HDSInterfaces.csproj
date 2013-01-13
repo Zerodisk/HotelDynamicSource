@@ -48,19 +48,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Base\BaseGuess.cs" />
+    <Compile Include="Data\Address.cs" />
+    <Compile Include="Data\Amenities.cs" />
+    <Compile Include="Data\HotelImage.cs" />
+    <Compile Include="Data\HotelInformation.cs" />
+    <Compile Include="Data\HotelPolicy.cs" />
+    <Compile Include="Data\Base\Identification.cs" />
+    <Compile Include="Data\Base\BasePerson.cs" />
+    <Compile Include="Data\Base\BaseHotel.cs" />
     <Compile Include="Data\Base\BaseRequest.cs" />
-    <Compile Include="Data\HDSSession.cs" />
+    <Compile Include="Data\Base\BaseItinerary.cs" />
+    <Compile Include="Data\CreditCard.cs" />
+    <Compile Include="Data\Customer.cs" />
+    <Compile Include="Data\Guest.cs" />
+    <Compile Include="Data\Hotel.cs" />
+    <Compile Include="Data\Itinerary.cs" />
+    <Compile Include="Data\Session.cs" />
     <Compile Include="HDSProviderBase.cs" />
     <Compile Include="HDSRequest.cs" />
     <Compile Include="Data\Enums.cs" />
     <Compile Include="Interfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Data\Response\HotelAvailabilityRS.cs" />
-    <Compile Include="Data\Response\HotelRateRuleRS.cs" />
-    <Compile Include="Data\Response\HotelReservationRS.cs" />
+    <Compile Include="Data\Response\RateRuleRS.cs" />
+    <Compile Include="Data\Response\ReservationRS.cs" />
     <Compile Include="Data\Base\BaseResponse.cs" />
-    <Compile Include="Data\Response\SearchResultByLocationRS.cs" />
+    <Compile Include="Data\Response\SearchResultRS.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

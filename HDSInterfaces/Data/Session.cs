@@ -6,7 +6,7 @@ using System.Runtime.Serialization;
 
 namespace HDSInterfaces
 {
-    public class HDSSession
+    public class Session
     {
         //client and customer details
         public string ClientIpAddress { get; set; }         //server ip who send the request
