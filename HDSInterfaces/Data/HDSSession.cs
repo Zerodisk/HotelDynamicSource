@@ -20,7 +20,6 @@ namespace HDSInterfaces
 
         //authentication and security validate for client
         public string UserAccess { get; set; }              //client identification code
-        public string AccessCode { get; set; }              //client password (never sent as clear text)
         public string EncryptHash { get; set; }             //hash for security validation
                       /*
                        * sha1(combination of the following, separated by #)
@@ -34,6 +33,9 @@ namespace HDSInterfaces
                        * assume access code = abcd
                        * 
                        * sha1(2013-01-12#2013-01-15#1234#sha1(abcd))
-                       */ 
+                       */
+
+
+        private string AccessCode { get; set; }              //client password (never sent as clear text)
     }
 }
