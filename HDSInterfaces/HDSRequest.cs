@@ -15,7 +15,7 @@ namespace HDSInterfaces
 
         //hotel         - request for search by a hotel
 
-        //room          - request for search by room (rate rule)
+        //itinerary     - request for search by room (rate rule)
 
         //reservation   - request for booking
         

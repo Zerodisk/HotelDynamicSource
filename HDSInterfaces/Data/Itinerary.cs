@@ -17,7 +17,10 @@ namespace HDSInterfaces
 
         public Itinerary()
         {
-            Guests = new List<Guest>();
+            if (Guests == null)
+            {
+                Guests = new List<Guest>();
+            }
         }
 
         public Itinerary(int numAdult, string childrenPhase)
