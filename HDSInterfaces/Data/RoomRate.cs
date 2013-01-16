@@ -5,8 +5,8 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HotelImage : BaseImage
+    public class RoomRate
     {
-
+        public List<DailyRate> Rate { get; set; }
     }
 }

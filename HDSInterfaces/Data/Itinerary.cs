@@ -7,13 +7,6 @@ namespace HDSInterfaces
 {
     public class Itinerary : BaseItinerary 
     {
-        public string Description { get; set; }
-        public string DescriptionExtra { get; set; }
-        public List<Guest> Guests { get; set; }
-        public List<Amenities> Amenities { get; set; }
-
-
-
 
         public Itinerary()
         {

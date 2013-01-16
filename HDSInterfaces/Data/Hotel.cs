@@ -9,12 +9,12 @@ namespace HDSInterfaces
     {
         public Identification Chain { get; set; }
 
-        public decimal StarRating { get; set; }
+        public decimal? StarRating { get; set; }
 
         //hotel location
         public Address Address { get; set; }
-        public double Latitude { get; set; }
-        public double Longtitude { get; set; }
+        public double? Latitude { get; set; }
+        public double? Longtitude { get; set; }
 
         //hotel information
         public HotelInformation HotelInfo { get; set; }
@@ -29,6 +29,6 @@ namespace HDSInterfaces
         public List<HotelImage> Images { get; set; }
 
         //rooms information and rates
-        public List<Itinerary> Rooms { get; set; } 
+        public List<Room> Rooms { get; set; } 
     }
 }

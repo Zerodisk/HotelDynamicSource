@@ -5,8 +5,7 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HotelImage : BaseImage
+    public class CancellationPolicyTier
     {
-
     }
 }

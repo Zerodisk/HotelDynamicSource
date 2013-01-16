@@ -13,11 +13,15 @@ namespace HDSInterfaces
 
         //location      - request for search by location
 
-        //hotel         - request for search by a hotel
+
+        //hotel         - request for search by a hotel and list of hotels
+        public List<Hotel> Hotels { get; set; }
 
         //itinerary     - request for search by room (rate rule)
+        public List<Itinerary> Itineraries { get; set; }
 
-        //reservation   - request for booking
+        //reservation   - request for booking/customer details/credit card details
+
         
     }
 }

@@ -50,6 +50,10 @@
   <ItemGroup>
     <Compile Include="Data\Address.cs" />
     <Compile Include="Data\Amenities.cs" />
+    <Compile Include="Data\Base\BaseImage.cs" />
+    <Compile Include="Data\CancellationPolicy.cs" />
+    <Compile Include="Data\CancellationPolicyTier.cs" />
+    <Compile Include="Data\DailyRate.cs" />
     <Compile Include="Data\HotelImage.cs" />
     <Compile Include="Data\HotelInformation.cs" />
     <Compile Include="Data\HotelPolicy.cs" />
@@ -63,6 +67,9 @@
     <Compile Include="Data\Guest.cs" />
     <Compile Include="Data\Hotel.cs" />
     <Compile Include="Data\Itinerary.cs" />
+    <Compile Include="Data\Room.cs" />
+    <Compile Include="Data\RoomImage.cs" />
+    <Compile Include="Data\RoomRate.cs" />
     <Compile Include="Data\Session.cs" />
     <Compile Include="HDSProviderBase.cs" />
     <Compile Include="HDSRequest.cs" />

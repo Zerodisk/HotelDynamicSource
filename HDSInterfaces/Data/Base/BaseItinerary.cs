@@ -8,6 +8,9 @@ namespace HDSInterfaces
     public class BaseItinerary : Identification
     {
         public HDSItineraryType ItineraryType { get; set; }
+        public string Description { get; set; }
+        public string DescriptionExtra { get; set; }
+        public List<Guest> Guests { get; set; }
 
         public BaseItinerary()
         {

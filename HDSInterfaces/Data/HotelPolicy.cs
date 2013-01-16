@@ -9,8 +9,9 @@ namespace HDSInterfaces
     {
         public string CheckInTime { get; set; }
         public string CheckOutTime { get; set; }
-        public string PolicyDescription { get; set; }
         public string CheckInInstruction { get; set; }
+
+        public string PolicyDescription { get; set; }        
         public string ChildPolicy { get; set; }
     }
 }
