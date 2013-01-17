@@ -13,7 +13,13 @@ namespace HDSInterfaces
         public string State { get; set; }
         public string Postcode { get; set; }
 
-        public Identification City { get; set; }
-        public Identification Country { get; set; }       
+        public string Phong { get; set; }
+        public string Fax { get; set; }
+
+        public City City { get; set; }
+        public Country Country { get; set; }
+
+        public double? Latitude { get; set; }
+        public double? Longtitude { get; set; }
     }
 }

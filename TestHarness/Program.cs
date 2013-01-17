@@ -30,6 +30,12 @@ namespace TestHarness
             rq.Session.UserAccess = "Zerodisk";
             rq.Session.CustomerIpAddress = "192.168.1.254";
 
+            rq.Hotels = new List<Hotel>();
+            Hotel aHotel = new Hotel();
+            aHotel.Name = "Hilton";
+            rq.Hotels.Add(aHotel);
+            rq.Itineraries = new List<Itinerary>();
+
             Console.WriteLine(objectToJson(rq));
 
 
@@ -43,7 +49,9 @@ namespace TestHarness
             string output = oSerializer.Serialize(obj);
             */
 
+            
             string output = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+            
 
             return output;
         }

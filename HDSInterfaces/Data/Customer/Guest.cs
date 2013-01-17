@@ -10,5 +10,9 @@ namespace HDSInterfaces
         public HDSGuestType GuestType { get; set; }
         public Address Address { get; set; }
 
+        public Guest()
+        {
+            GuestType = HDSGuestType.Adult;
+        }
     }
 }
