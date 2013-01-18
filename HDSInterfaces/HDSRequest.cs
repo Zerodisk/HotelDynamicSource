@@ -7,12 +7,11 @@ namespace HDSInterfaces
 {
     public class HDSRequest: BaseRequest 
     {
-        //date stay
-        public DateTime? CheckIn { get; set; }
-        public DateTime? CheckOut { get; set; }
+        //date stay range
+        public StayDate StayDate { get; set; }
 
         //location      - request for search by location
-        public Location Location { get; set; }
+        public LocationCriteria LocationArea { get; set; }
 
         //hotel         - request for search by a hotel and list of hotels
         public List<Hotel> Hotels { get; set; }
@@ -30,6 +29,7 @@ namespace HDSInterfaces
         {
             Session = new Session();
             RequestType = requestType;
+            IsContentRequested = true;      //just for started because no time to finish client
         }
         
     }

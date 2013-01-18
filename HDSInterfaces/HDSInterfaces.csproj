@@ -48,16 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Exception\WarningAndError.cs" />
+    <Compile Include="Data\Location\Location.cs" />
+    <Compile Include="Data\Common\StayDate.cs" />
     <Compile Include="Data\Customer\ReservationInformation.cs" />
     <Compile Include="Data\Location\Address.cs" />
     <Compile Include="Data\Common\Amenities.cs" />
     <Compile Include="Data\Base\BaseImage.cs" />
-    <Compile Include="Data\Location\Location.cs" />
+    <Compile Include="Data\Location\LocationCriteria.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicy.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicyTier.cs" />
     <Compile Include="Data\Location\City.cs" />
     <Compile Include="Data\Location\Country.cs" />
-    <Compile Include="Data\RoomAndRate\DailyRate.cs" />
+    <Compile Include="Data\RoomAndRate\Promotion.cs" />
+    <Compile Include="Data\RoomAndRate\Rate.cs" />
     <Compile Include="Data\Hotel\HotelImage.cs" />
     <Compile Include="Data\Hotel\HotelInformation.cs" />
     <Compile Include="Data\Hotel\HotelPolicy.cs" />
@@ -75,6 +79,7 @@
     <Compile Include="Data\RoomAndRate\RoomInformation.cs" />
     <Compile Include="Data\RoomAndRate\RoomRate.cs" />
     <Compile Include="Data\Common\Session.cs" />
+    <Compile Include="Data\RoomAndRate\RoomValueAdd.cs" />
     <Compile Include="HDSProviderBase.cs" />
     <Compile Include="HDSRequest.cs" />
     <Compile Include="Data\Common\Enums.cs" />

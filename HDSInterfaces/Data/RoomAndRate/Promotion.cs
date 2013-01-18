@@ -5,7 +5,8 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class Location : Identification 
+    public class Promotion : Identification
     {
+        public string Description { get; set; }
     }
 }

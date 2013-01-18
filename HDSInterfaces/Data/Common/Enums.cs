@@ -48,4 +48,11 @@ namespace HDSInterfaces
         Smoking = 1,
         NonSmoking = 2
     }
+
+    public enum HDSCreditCardType
+    {
+        VISA = 0,
+        MC = 1,
+        AMEX = 2
+    }
 }

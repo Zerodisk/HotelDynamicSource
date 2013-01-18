@@ -14,5 +14,9 @@ namespace HDSInterfaces
         public CancellationPolicy CancellationPolicy { get; set; }
         public RoomRate Rates { get; set; }
 
+        //all promotion/value add/any of room complimentary
+        public List<Promotion>    Promotions { get; set; }
+        public List<RoomValueAdd> ValueAdds { get; set; }
+
     }
 }

@@ -5,7 +5,8 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class DailyRate
+    public class RoomValueAdd : Identification
     {
+        public string Description { get; set; }
     }
 }

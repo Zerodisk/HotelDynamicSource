@@ -7,6 +7,10 @@ namespace HDSInterfaces
 {
     public class RoomRate
     {
-        public List<DailyRate> Rate { get; set; }
+        //total rate of this room
+        public Rate TotalRate { get; set; }
+
+        //list of nightly rate for this room (rate for each night)
+        public List<Rate> NightlyRate { get; set; }
     }
 }

@@ -24,7 +24,8 @@ namespace TestHarness
             */
 
             HDSRequest rq = new HDSRequest(HDSRequestType.Reservation);
-            rq.CheckIn = DateTime.Now;
+            rq.StayDate = new StayDate();
+            rq.StayDate.CheckIn = "2013-01-02";
             
             rq.Session.UserAccess = "Zerodisk";
             rq.Session.CustomerIpAddress = "192.168.1.254";
