@@ -23,9 +23,8 @@ namespace TestHarness
             bookingObj.MakeHotelReservation(null);                                              //call expedia
             */
 
-            HDSRequest rq = new HDSRequest();
+            HDSRequest rq = new HDSRequest(HDSRequestType.Reservation);
             rq.CheckIn = DateTime.Now;
-            rq.RequestType = HDSRequestType.Reservation;
             
             rq.Session.UserAccess = "Zerodisk";
             rq.Session.CustomerIpAddress = "192.168.1.254";

@@ -13,10 +13,5 @@ namespace HDSInterfaces
         //session information of the requester (customer ip address, browser user agent, session id, locale and currency)     
         public Session Session { get; set; }
 
-        public BaseRequest()
-        {
-            Session = new Session();
-        }
-
     }
 }

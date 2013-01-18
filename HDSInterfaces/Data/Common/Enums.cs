@@ -41,4 +41,11 @@ namespace HDSInterfaces
         Room = 0,
         ExtraBed = 1,
     }
+
+    public enum HDSSmokingPreference
+    {
+        NoPreference = 0,
+        Smoking = 1,
+        NonSmoking = 2
+    }
 }

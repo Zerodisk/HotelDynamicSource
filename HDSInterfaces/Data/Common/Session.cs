@@ -23,7 +23,7 @@ namespace HDSInterfaces
         //authentication and security validate for client
         public string SiteId { get; set; }                  //client primary key (first client, start with 101, then 102, 103)
         public string UserAccess { get; set; }              //client identification code
-        public string EncryptHash { get; }                  //hash for security validation
+        public string EncryptHash { get; set; }                  //hash for security validation
         /*
          * sha1(combination of the following, separated by #)
          * - checkin

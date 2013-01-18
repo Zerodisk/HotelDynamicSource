@@ -9,7 +9,5 @@ namespace HDSInterfaces
     {
         public Address HomeAddress { get; set; }
         public Address BillingAddress { get; set; }
-
-        public CreditCard CreditCard { get; set; }
     }
 }

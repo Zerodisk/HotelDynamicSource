@@ -48,9 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Customer\ReservationInformation.cs" />
     <Compile Include="Data\Location\Address.cs" />
     <Compile Include="Data\Common\Amenities.cs" />
     <Compile Include="Data\Base\BaseImage.cs" />
+    <Compile Include="Data\Location\Location.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicy.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicyTier.cs" />
     <Compile Include="Data\Location\City.cs" />

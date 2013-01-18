@@ -8,8 +8,12 @@ namespace HDSInterfaces
     public class Itinerary : BaseItinerary 
     {
 
+        public HDSSmokingPreference SmokingPreference { get; set; }
+
         public Itinerary()
         {
+            SmokingPreference = HDSSmokingPreference.NoPreference;
+
             if (Guests == null)
             {
                 Guests = new List<Guest>();
@@ -18,6 +22,8 @@ namespace HDSInterfaces
 
         public Itinerary(int numAdult, string childrenPhase)
         {
+            SmokingPreference = HDSSmokingPreference.NoPreference;
+
             if (Guests == null){
                 Guests = new List<Guest>();
             }
