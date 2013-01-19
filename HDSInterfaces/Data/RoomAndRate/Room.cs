@@ -10,9 +10,10 @@ namespace HDSInterfaces
         //room information
         public RoomInformation RoomInfo { get; set; }
 
-        //rate and cancellation policy
-        public CancellationPolicy CancellationPolicy { get; set; }
+        //availability rate and cancellation policy
+        public int? NumberOfRoomAvailable { get; set; }
         public RoomRate Rates { get; set; }
+        public CancellationPolicy CancellationPolicy { get; set; }
 
         //all promotion/value add/any of room complimentary
         public List<Promotion>    Promotions { get; set; }

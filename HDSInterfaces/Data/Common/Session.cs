@@ -15,6 +15,10 @@ namespace HDSInterfaces
         public string CustomerIpAddress { get; set; }       //real customer ip
         public string BrowserUserAgent { get; set; }
         
+        //pagination
+        public int? PageIndex { get; set; }                 //pagination page index start with 1
+        public int? PageSize { get; set; }                  //size of page/number of max hotel return
+
         //multi language-currency
         public string CurrencyCode { get; set; }
         public string LanguageCode { get; set; }
@@ -39,6 +43,13 @@ namespace HDSInterfaces
          * sha1(2013-01-12#2013-01-15#101-201301171340-qlkdufp#1234#sha1(abcd))
          */
 
+        //constructure init default value
+        public Session()
+        {
+            PageIndex = 1;
+            PageSize = 25;
+            LanguageCode = "EN";
+        }
 
         private string AccessCode;  //client password (never sent as clear text)
 

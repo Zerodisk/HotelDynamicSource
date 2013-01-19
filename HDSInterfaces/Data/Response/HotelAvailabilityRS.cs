@@ -7,5 +7,6 @@ namespace HDSInterfaces
 {
     public class HotelAvailabilityRS : BaseResponse 
     {
+        public Hotel Hotel { get; set; }
     }
 }
