@@ -11,7 +11,7 @@ namespace HDSInterfaces
         public StayDate StayDate { get; set; }
 
         //location      - request for search by location
-        public LocationCriteria LocationArea { get; set; }
+        public SearchCriteria SearchCriteria { get; set; }
 
         //hotel         - request for search by a hotel and list of hotels
         public List<Hotel> Hotels { get; set; }

@@ -24,7 +24,6 @@ namespace HDSInterfaces
 
         //multi language-currency
         public string CurrencyCode { get; set; }
-        public string LanguageCode { get; set; }
         public string Locale { get; set; }
 
         //authentication and security validate for client
@@ -49,10 +48,10 @@ namespace HDSInterfaces
         //constructure init default value
         public Session()
         {
-            PageIndex = 1;
-            PageSize = 25;
-            LanguageCode = "EN";
-            SourceProvider = HDSSource.Expedia;
+            PageIndex       = 1;
+            PageSize        = 25;
+            Locale          = "en_US";
+            SourceProvider  = HDSSource.Expedia;
         }
 
         private string AccessCode;  //client password (never sent as clear text)

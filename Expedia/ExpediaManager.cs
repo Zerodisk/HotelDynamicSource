@@ -15,11 +15,11 @@ namespace Expedia
  
         }
 
-        public override SearchResultRS GetSearchResultByLocation(HDSRequest request)
+        public override SearchResultRS GetSearchResult(HDSRequest request)
         {
             shoppingHelper = new ShoppingHelper();
 
-            return shoppingHelper.GetSearchResultByLocation(request);
+            return shoppingHelper.GetSearchResult(request);
         }
 
         public override HotelAvailabilityRS GetHotelAvailability(HDSRequest request)
@@ -32,7 +32,6 @@ namespace Expedia
         public override ReservationRS MakeHotelReservation(HDSRequest request)
         {
             bookingHelper = new BookingHelper();
-
 
             return bookingHelper.MakeHotelReservation(request);
         }

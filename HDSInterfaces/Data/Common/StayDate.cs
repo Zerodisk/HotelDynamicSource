@@ -14,6 +14,16 @@ namespace HDSInterfaces
         public string CheckIn { get; set; }
         public string CheckOut { get; set; }
 
+        public string GetCheckInUSFormat()
+        {
+            return returnUSFormatDate(CheckIn);
+        }
+
+        public string GetCheckOutUSFormat()
+        {
+            return returnUSFormatDate(CheckOut); 
+        }
+
         public DateTime? DateCheckIn
         {
             get{
@@ -40,6 +50,19 @@ namespace HDSInterfaces
                     return null;
                 }
             }
+        }
+
+        /*
+         * change string of date format from yyyy-MM-dd to MM/dd/yyyy
+         */  
+        private string returnUSFormatDate(string date)
+        {
+            if (date == null) { return null; }
+
+            string result;
+            string[] dateElement = date.Split('-');
+            result = dateElement[1] + "/" + dateElement[2] + "/" + dateElement[0];
+            return result;
         }
 
     }

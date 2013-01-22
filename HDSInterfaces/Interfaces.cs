@@ -20,14 +20,14 @@ namespace HDSInterfaces
     //content - hotel description
     public interface IHDSHotelContent : IHDSManager
     {
-
+        //still not sure if needed??
     }
 
 
     //shopping class interface - for serach result and hotel page
     public interface IHDSHotelShopping : IHDSManager
     {
-        SearchResultRS GetSearchResultByLocation(HDSRequest request);         
+        SearchResultRS GetSearchResult(HDSRequest request);         
         /*
          * expedia -> HotelListRequest/Response
          * orbitz  -> HotelShoppingRequest/Response

@@ -31,10 +31,51 @@ namespace HDSInterfaces
             this.SetGuest(numAdult, childrenPhase);
         }
 
+        public int GetNumberOfAdult()
+        {
+            return ReturnNumberOfGuestByType(HDSGuestType.Adult); 
+        }
+
+        public int GetNumberOfChildren()
+        {
+            return ReturnNumberOfGuestByType(HDSGuestType.Child); 
+        }
+
+        /*
+         * return all children age in array of integer
+         */ 
+        public int[] GetChildAges()
+        {
+            int index = 0;
+            int[] result = new int[GetNumberOfChildren()];
+            foreach (Guest guest in Guests)
+            {
+                if (guest.GuestType == HDSGuestType.Child)
+                {
+                    result[index] = (int)guest.Age;
+                    index = index + 1;
+                }
+            }
+            return result;
+        }
 
 
 
-
+        /*
+         * function return number of guest type
+         */ 
+        private int ReturnNumberOfGuestByType(HDSGuestType guestType)
+        {
+            int result = 0;
+            foreach (Guest guest in Guests)
+            {
+                if (guest.GuestType == guestType)
+                {
+                    result = result + 1;
+                }
+            }
+            return result;
+        }
 
         /*
          * for setting guest in the room
@@ -48,7 +89,7 @@ namespace HDSInterfaces
          */
         private void SetGuest(int numAdult, string childrenPhase)
         {
-            for (int i = 0; i <= numAdult; i++)
+            for (int i = 0; i <= numAdult-1; i++)
             {
                 Guest guest = new Guest();
                 guest.GuestType = HDSGuestType.Adult;
@@ -58,7 +99,7 @@ namespace HDSInterfaces
             string[] phase = childrenPhase.Split('_');
             int numChildren = int.Parse(phase[0]);
             
-            for (int i = 0; i <= numChildren; i++)
+            for (int i = 0; i <= numChildren-1; i++)
             {
                 Guest guest = new Guest();
                 guest.GuestType = HDSGuestType.Child;

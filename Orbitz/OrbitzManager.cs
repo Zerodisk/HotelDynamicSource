@@ -8,7 +8,7 @@ namespace Orbitz
 {
     public class OrbitzManager : HDSProviderBase 
     {
-        public override SearchResultRS GetSearchResultByLocation(HDSRequest request)
+        public override SearchResultRS GetSearchResult(HDSRequest request)
         {
             return null;
         }

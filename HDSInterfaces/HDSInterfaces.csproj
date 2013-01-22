@@ -55,7 +55,7 @@
     <Compile Include="Data\Location\Address.cs" />
     <Compile Include="Data\Common\Amenities.cs" />
     <Compile Include="Data\Base\BaseImage.cs" />
-    <Compile Include="Data\Location\LocationCriteria.cs" />
+    <Compile Include="Data\Common\SearchCriteria.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicy.cs" />
     <Compile Include="Data\RoomAndRate\CancellationPolicyTier.cs" />
     <Compile Include="Data\Location\City.cs" />

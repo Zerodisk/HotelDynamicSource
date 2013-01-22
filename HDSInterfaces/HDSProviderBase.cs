@@ -8,7 +8,7 @@ namespace HDSInterfaces
     public class HDSProviderBase : IHDSHotelShopping, IHDSHotelBooking  
     {
         //search by location
-        public virtual SearchResultRS GetSearchResultByLocation(HDSRequest request)
+        public virtual SearchResultRS GetSearchResult(HDSRequest request)
         {
             return null;
         }

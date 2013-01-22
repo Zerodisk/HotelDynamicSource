@@ -21,19 +21,17 @@ namespace HDSInterfaces
         SearchByLocationIds     = 11,
         SearchByHotelIds        = 12,
 
-        //hotel page
+        //search by a single hotel
         SearchByHotelId         = 20,
 
         //booking
         Reprice                 = 30,
         Reservation             = 31,
 
-        //itinerary         
+        //post-booking, itinerary and cancellation   
         Itinerary               = 40,
-
-        //cancellation     
-        PreCancellation         = 50,
-        Cancellation            = 51
+        PreCancellation         = 41,
+        Cancellation            = 42
     }
 
     public enum HDSGuestType
