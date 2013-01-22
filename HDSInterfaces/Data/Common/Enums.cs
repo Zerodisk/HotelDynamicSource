@@ -8,8 +8,8 @@ namespace HDSInterfaces
     public enum HDSSource
     {
         NoSource = 0,
-        Expedia = 1,
-        Orbitz = 2
+        Expedia  = 1,
+        Orbitz   = 2
     }
 
     public enum HDSRequestType
@@ -18,41 +18,49 @@ namespace HDSInterfaces
 
         //search result
         SearchByLocationKeyword = 10,
-        SearchByLocationIds = 11,
-        SearchByHotelIds = 12,
+        SearchByLocationIds     = 11,
+        SearchByHotelIds        = 12,
 
         //hotel page
-        SearchByHotelId = 20,
+        SearchByHotelId         = 20,
 
         //booking
-        Reprice = 30,
-        Reservation = 31
+        Reprice                 = 30,
+        Reservation             = 31,
+
+        //itinerary         
+        Itinerary               = 40,
+
+        //cancellation     
+        PreCancellation         = 50,
+        Cancellation            = 51
     }
 
     public enum HDSGuestType
     {
-        Adult = 0,
-        Child = 1,
+        Adult  = 0,
+        Child  = 1,
         Senior = 2
     }
 
     public enum HDSItineraryType
     {
-        Room = 0,
+        Room     = 0,
         ExtraBed = 1,
     }
 
     public enum HDSSmokingPreference
     {
         NoPreference = 0,
-        Smoking = 1,
-        NonSmoking = 2
+        Smoking      = 1,
+        NonSmoking   = 2
     }
 
     public enum HDSCreditCardType
     {
-        VISA = 0,
-        MC = 1,
-        AMEX = 2
+        NoCard = 0,
+        VISA   = 1,
+        MC     = 2,
+        AMEX   = 3
     }
 }

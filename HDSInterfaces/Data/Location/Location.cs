@@ -7,5 +7,6 @@ namespace HDSInterfaces
 {
     public class Location : Identification 
     {
+        public Address Address { get; set; }
     }
 }

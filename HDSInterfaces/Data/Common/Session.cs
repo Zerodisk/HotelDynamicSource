@@ -8,6 +8,9 @@ namespace HDSInterfaces
 {
     public class Session
     {
+        //provider-source indicate inventory source
+        public HDSSource SourceProvider { get; set; }
+
         //client and customer details
         public string SessionId { get; set; }               //24 digits session id for each customer session. format could be siteid-yyyymmddhhmm-[7digit random]
                                                             // example 101-201301171340-qlkdufp
@@ -49,6 +52,7 @@ namespace HDSInterfaces
             PageIndex = 1;
             PageSize = 25;
             LanguageCode = "EN";
+            SourceProvider = HDSSource.Expedia;
         }
 
         private string AccessCode;  //client password (never sent as clear text)
