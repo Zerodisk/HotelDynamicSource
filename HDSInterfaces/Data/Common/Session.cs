@@ -49,20 +49,10 @@ namespace HDSInterfaces
         public Session()
         {
             PageIndex       = 1;
-            PageSize        = 25;
+            PageSize        = 50;
             Locale          = "en_US";
             SourceProvider  = HDSSource.Expedia;
         }
 
-        private string AccessCode;  //client password (never sent as clear text)
-
-        public void SetAccessCode(string value)
-        {
-            AccessCode = value;
-        }
-
-        public void SetEncryptHash(DateTime checkIn, DateTime checkOut){
-
-        }
     }
 }

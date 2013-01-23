@@ -12,22 +12,23 @@ namespace Expedia
     {
         //constant value
         private int DEFAULT_MAX_NUMBER_OF_ROOM = 2; //Defines the number of room types to return with each property.
-        private Expedia.HotelShoppingServiceReference.LocaleType DEFAULT_LOCALE = LocaleType.en_US;
-
+        
         //private variable
         private Expedia.HotelShoppingServiceReference.HotelServicesClient serviceObjShop;
+        private CommonHelper commonHelper;
 
         //constructure
         public ShoppingHelper()
         {
             serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+            commonHelper = new CommonHelper();
         }
 
         public SearchResultRS GetSearchResult(HDSRequest request)
         {
             //create hotel list request object(HotelListRequest)
             HotelListRequest hotelListRequest = new HotelListRequest();
-            hotelListRequest = (HotelListRequest)this.GenerateBaseRequest(hotelListRequest, request);
+            hotelListRequest = (HotelListRequest)commonHelper.GenerateBaseRequest(hotelListRequest, request);
 
             //set max hotel return
             if (request.Session.PageSize != null)
@@ -89,6 +90,9 @@ namespace Expedia
                     break;
             }
 
+            //submit soap request to expedia
+            HotelServicesClient client = new HotelServicesClient();
+            HotelListResponse hotelListResponse = client.getList(hotelListRequest);
 
 
 
@@ -106,20 +110,6 @@ namespace Expedia
             return null;
         }
 
-        //create all the neccessary property for expedia general request parameter
-        private HotelBaseRequest GenerateBaseRequest(HotelListRequest hotelRequest, HDSRequest request)
-        {
-            hotelRequest.apiKey = "nt2cqy75cmqumtjm2pscc7py";
-            hotelRequest.cid    = 55505;
 
-            hotelRequest.customerIpAddress = request.Session.CustomerIpAddress;
-            hotelRequest.customerSessionId = request.Session.SessionId;
-            hotelRequest.customerUserAgent = request.Session.BrowserUserAgent;
-            
-            hotelRequest.currencyCode = request.Session.CurrencyCode;
-            hotelRequest.locale = DEFAULT_LOCALE;
-
-            return hotelRequest;
-        }
     }
 }
