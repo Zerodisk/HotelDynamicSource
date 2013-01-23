@@ -9,7 +9,7 @@ namespace HDSInterfaces
     {
 
         public bool? IsMoreResultsAvailable { get; set; }       //true if there is further result, which require next request (pagination)
-        public int TotalHotelReturnThisResult{                  //number of hotel return in this query
+        public int TotalHotelReturnThisResult{                  //number of hotel return in this query/request
             get {
                 if (Hotels == null)
                     return 0;
@@ -17,7 +17,6 @@ namespace HDSInterfaces
                     return Hotels.Count;
             } 
         }  
-        public int TotalHotelReturnThisSearch { get; set; }    //total number of hotels return from the search criteria
 
         //return list of expected/guest location in case of location keyword request can't be found
         public List<Location> Locations { get; set; }

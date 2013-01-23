@@ -16,11 +16,12 @@ namespace Expedia
         //private variable
         private Expedia.HotelShoppingServiceReference.HotelServicesClient serviceObjShop;
         private CommonHelper commonHelper;
+        private MappingManager objMapping;
 
         //constructure
         public ShoppingHelper()
         {
-            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+            objMapping = new MappingManager();
             commonHelper = new CommonHelper();
         }
 
@@ -77,7 +78,7 @@ namespace Expedia
                     hotelListRequest.hotelIdList = new long[request.Hotels.Count];
                     foreach (HDSInterfaces.Hotel hotel in request.Hotels)
                     {
-                        hotelListRequest.hotelIdList[index] = hotel.Id;
+                        hotelListRequest.hotelIdList[index] = (long)hotel.Id;
                         index = index + 1;
                     }
 
@@ -91,13 +92,13 @@ namespace Expedia
             }
 
             //submit soap request to expedia
-            HotelServicesClient client = new HotelServicesClient();
-            HotelListResponse hotelListResponse = client.getList(hotelListRequest);
+            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+            HotelListResponse hotelListResponse = serviceObjShop.getList(hotelListRequest);
 
 
 
 
-            return new SearchResultRS();
+            return objMapping.MappingSearchResult(hotelListResponse);
         }
 
         public HotelAvailabilityRS GetHotelAvailability(HDSRequest request)

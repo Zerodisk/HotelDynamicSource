@@ -25,9 +25,11 @@ namespace TestHarness
             rq.StayDate = new StayDate();
             rq.StayDate.CheckIn  = "2013-03-17";
             rq.StayDate.CheckOut = "2013-03-19";
-            
+
+            rq.Session.CurrencyCode = "AUD";
             rq.Session.UserAccess = "Zerodisk";
-            rq.Session.CustomerIpAddress = "192.168.1.254";
+            rq.Session.CustomerIpAddress = "203.1.2.3";
+            rq.Session.BrowserUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1";
 
             rq.SearchCriteria = new SearchCriteria();
             //rq.SearchCriteria.LocationKeyword = "Osaka";
@@ -49,13 +51,14 @@ namespace TestHarness
 
 
             Console.WriteLine(objectToJson(rq));
+            Console.WriteLine("\n------------------------------\n");
+            Console.ReadLine();
+            
 
             IHDSHotelShopping shoppingObj = factory.CreateSourceShopping(HDSSource.Expedia);     //call Expedia
             SearchResultRS rs  = shoppingObj.GetSearchResult(rq);
 
-            Console.ReadLine();
-
-            Console.WriteLine("\n------------------------------\n");
+            
             Console.WriteLine(objectToJson(rs));
             Console.ReadLine();
         }

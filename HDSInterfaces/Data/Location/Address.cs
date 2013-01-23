@@ -19,7 +19,9 @@ namespace HDSInterfaces
         public City City { get; set; }
         public Country Country { get; set; }
 
-        public double? Latitude { get; set; }
-        public double? Longtitude { get; set; }
+        public float? Latitude { get; set; }
+        public float? Longtitude { get; set; }
+
+        public string LocationDescription { get; set; }
     }
 }

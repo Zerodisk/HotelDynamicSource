@@ -8,7 +8,8 @@ namespace HDSInterfaces
     public class HotelInformation
     {
         //general things
-        public decimal? StarRating { get; set; }
+        public float? StarRating { get; set; }
+        public float? TripAdvisorRating { get; set; }
         public Identification Chain { get; set; }
         public string HotelDescription { get; set; }
         public int? NumberOfRoom { get; set; }
