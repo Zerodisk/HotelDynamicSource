@@ -32,7 +32,7 @@ namespace TestHarness
             rq.Session.BrowserUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1";
 
             rq.SearchCriteria = new SearchCriteria();
-            rq.SearchCriteria.LocationKeyword = "Osaka";
+            rq.SearchCriteria.LocationKeyword = "New York";
             //rq.SearchCriteria.Locations = new List<Location>();
             //rq.SearchCriteria.Locations.Add(new Location { Code = "B0055425-19CE-4D8F-8769-A2DB23ED2E46" });
 

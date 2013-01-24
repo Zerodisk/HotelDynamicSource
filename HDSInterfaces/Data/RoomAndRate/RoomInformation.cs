@@ -7,6 +7,9 @@ namespace HDSInterfaces
 {
     public class RoomInformation
     {
+        //bedding
+        public string BeddingDescription { get; set; }
+
         //room info
         public List<Amenities> Amenities { get; set; }
 

@@ -20,7 +20,7 @@ namespace HDSInterfaces
     //content - hotel description
     public interface IHDSHotelContent : IHDSManager
     {
-        //still not sure if needed??
+        Hotel GetHotelInfo(HDSRequest request);
     }
 
 

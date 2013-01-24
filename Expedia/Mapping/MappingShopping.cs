@@ -8,7 +8,7 @@ using Expedia.HotelShoppingServiceReference;
 
 namespace Expedia
 {
-    public class MappingManager
+    public class MappingShopping
     {
         private string IMAGE_URL_PREFIX = "http://images.travelnow.com";
 
@@ -109,7 +109,7 @@ namespace Expedia
                                 room.Promotions = new List<Promotion>();
                                 room.Promotions.Add(new Promotion { Code = rawRoom.promoId, Description = rawRoom.promoDescription });
                             }
-
+                            
                             //rate total
                             room.Rates = new RoomRate();
                             room.Rates.TotalRate = new Rate{
@@ -118,7 +118,7 @@ namespace Expedia
                                                        };
                             //tax total
                             if (rawRoom.RateInfo.ChargeableRateInfo.surchargeTotalSpecified)
-                                room.Rates.TotalRate.TaxaRate = rawRoom.RateInfo.ChargeableRateInfo.surchargeTotal;
+                                room.Rates.TotalRate.TaxAndServiceFee = rawRoom.RateInfo.ChargeableRateInfo.surchargeTotal;
 
                             //rate daily
                             room.Rates.NightlyRate = new List<Rate>();

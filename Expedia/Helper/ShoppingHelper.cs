@@ -11,17 +11,17 @@ namespace Expedia
     public class ShoppingHelper
     {
         //constant value
-        private int DEFAULT_MAX_NUMBER_OF_ROOM = 2; //Defines the number of room types to return with each property.
+        private int DEFAULT_MAX_NUMBER_OF_ROOM = 1; //Defines the number of room types to return with each property.
         
         //private variable
         private Expedia.HotelShoppingServiceReference.HotelServicesClient serviceObjShop;
         private CommonHelper commonHelper;
-        private MappingManager objMapping;
+        private MappingShopping objMapping;
 
         //constructure
         public ShoppingHelper()
         {
-            objMapping = new MappingManager();
+            objMapping = new MappingShopping();
             commonHelper = new CommonHelper();
         }
 
@@ -94,9 +94,6 @@ namespace Expedia
             //submit soap request to expedia
             serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
             HotelListResponse hotelListResponse = serviceObjShop.getList(hotelListRequest);
-
-
-
 
             return objMapping.MappingSearchResult(hotelListResponse);
         }

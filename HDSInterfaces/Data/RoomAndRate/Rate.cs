@@ -10,7 +10,7 @@ namespace HDSInterfaces
 
         public float  SellRate { get; set; }                //sell rate, this is final price sell to customer
         public float? BaseRate { get; set; }                //full price, price was before saving/discount
-        public float? TaxaRate { get; set; }                //tax rate, null = unknown tax
+        public float? TaxAndServiceFee { get; set; }       //tax rate-service fee, null = unknown tax or n/a
         
         public string CurrencyCode { get; set; }
 

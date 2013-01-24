@@ -5,8 +5,14 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HDSProviderBase : IHDSHotelShopping, IHDSHotelBooking  
+    public class HDSProviderBase : IHDSHotelContent, IHDSHotelShopping, IHDSHotelBooking  
     {
+        //hotel content
+        public virtual Hotel GetHotelInfo(HDSRequest request)
+        {
+            return null;
+        }
+
         //search by location
         public virtual SearchResultRS GetSearchResult(HDSRequest request)
         {

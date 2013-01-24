@@ -15,7 +15,7 @@ namespace Expedia
 
 
         //create all the neccessary property for expedia general request parameter
-        public HotelBaseRequest GenerateBaseRequest(HotelListRequest hotelRequest, HDSRequest request)
+        public HotelBaseRequest GenerateBaseRequest(HotelBaseRequest hotelRequest, HDSRequest request)
         {
             hotelRequest.apiKey = "nt2cqy75cmqumtjm2pscc7py";
             hotelRequest.cid = 55505;
