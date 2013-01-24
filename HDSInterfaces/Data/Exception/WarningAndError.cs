@@ -7,7 +7,8 @@ namespace HDSInterfaces
 {
     public class WarningAndError : Identification 
     {
+        public string Type { get; set; }
         public string Message { get; set; }
-        public string Description { get; set; }
+        public string DetailDescription { get; set; }
     }
 }

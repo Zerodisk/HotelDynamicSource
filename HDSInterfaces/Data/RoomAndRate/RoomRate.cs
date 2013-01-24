@@ -12,5 +12,7 @@ namespace HDSInterfaces
 
         //list of nightly rate for this room (rate for each night)
         public List<Rate> NightlyRate { get; set; }
+
+
     }
 }

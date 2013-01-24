@@ -9,7 +9,7 @@ namespace HDSInterfaces
     {
         public List<Location> Locations { get; set; }
         public string  LocationKeyword { get; set; }
-        public decimal MaxDistance { get; set; }
+        public decimal? MaxDistance { get; set; }
         public Address Address { get; set; }
 
         public float? MinStarRating { get; set; }

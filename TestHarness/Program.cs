@@ -21,7 +21,7 @@ namespace TestHarness
             bookingObj.MakeHotelReservation(null);                                              //call expedia
             */
 
-            HDSRequest rq = new HDSRequest(HDSRequestType.SearchByLocationIds);
+            HDSRequest rq = new HDSRequest(HDSRequestType.SearchByLocationKeyword);
             rq.StayDate = new StayDate();
             rq.StayDate.CheckIn  = "2013-03-17";
             rq.StayDate.CheckOut = "2013-03-19";
@@ -32,27 +32,31 @@ namespace TestHarness
             rq.Session.BrowserUserAgent = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.1 (KHTML, like Gecko) Chrome/22.0.1207.1 Safari/537.1";
 
             rq.SearchCriteria = new SearchCriteria();
-            //rq.SearchCriteria.LocationKeyword = "Osaka";
-            rq.SearchCriteria.Locations = new List<Location>();
-            rq.SearchCriteria.Locations.Add(new Location { Code = "B0055425-19CE-4D8F-8769-A2DB23ED2E46" });
+            rq.SearchCriteria.LocationKeyword = "Osaka";
+            //rq.SearchCriteria.Locations = new List<Location>();
+            //rq.SearchCriteria.Locations.Add(new Location { Code = "B0055425-19CE-4D8F-8769-A2DB23ED2E46" });
 
             rq.SearchCriteria.MinStarRating = 4;
-            rq.SearchCriteria.MaxDistance   = 5;
+            rq.SearchCriteria.MaxStarRating = 5;
 
+            /*
             rq.Hotels = new List<Hotel>();
             Hotel aHotel = new Hotel();
             aHotel.Id = 96768574;
             aHotel.Name = "Hilton";
             rq.Hotels.Add(aHotel);
+            */
 
             rq.Itineraries = new List<Itinerary>();
-            Itinerary itinerary = new Itinerary(1, "2_2_5");
+            Itinerary itinerary = new Itinerary(1, "1_2");
             rq.Itineraries.Add(itinerary);
 
 
             Console.WriteLine(objectToJson(rq));
             Console.WriteLine("\n------------------------------\n");
+            Console.Write("Press enter key to continue");
             Console.ReadLine();
+            Console.Write("..\n");
             
 
             IHDSHotelShopping shoppingObj = factory.CreateSourceShopping(HDSSource.Expedia);     //call Expedia

@@ -7,7 +7,7 @@ namespace HDSInterfaces
 {
     public class City : Identification 
     {
-        public decimal GMTOffSet { get; set; }
+        public decimal? GMTOffSet { get; set; }
         public Country Country { get; set; }
     }
 }
