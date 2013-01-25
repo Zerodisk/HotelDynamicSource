@@ -28,84 +28,91 @@ namespace Expedia
         public SearchResultRS GetSearchResult(HDSRequest request)
         {
             //create hotel list request object(HotelListRequest)
-            HotelListRequest hotelListRequest = new HotelListRequest();
-            hotelListRequest = (HotelListRequest)commonHelper.GenerateBaseRequest(hotelListRequest, request);
+            HotelListRequest rawRq = new HotelListRequest();
+            rawRq = (HotelListRequest)commonHelper.GenerateBaseRequest(rawRq, request);
 
             //set max hotel return
             if (request.Session.PageSize != null)
             {
-                hotelListRequest.numberOfResults = (int)request.Session.PageSize;
-                hotelListRequest.numberOfResultsSpecified = true;
+                rawRq.numberOfResults = (int)request.Session.PageSize;
+                rawRq.numberOfResultsSpecified = true;
             }
 
             //star rating
             if (request.SearchCriteria.MinStarRating != null)
             {
-                hotelListRequest.minStarRating = (float)request.SearchCriteria.MinStarRating;
-                hotelListRequest.minStarRatingSpecified = true;
+                rawRq.minStarRating = (float)request.SearchCriteria.MinStarRating;
+                rawRq.minStarRatingSpecified = true;
             }
             if (request.SearchCriteria.MaxStarRating != null)
             {
-                hotelListRequest.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
-                hotelListRequest.maxStarRatingSpecified = true;
+                rawRq.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
+                rawRq.maxStarRatingSpecified = true;
             }
 
             //stay date
-            hotelListRequest.arrivalDate   = request.StayDate.GetCheckInUSFormat();
-            hotelListRequest.departureDate = request.StayDate.GetCheckOutUSFormat();
+            rawRq.arrivalDate = request.StayDate.GetCheckInUSFormat();
+            rawRq.departureDate = request.StayDate.GetCheckOutUSFormat();
 
             //room and num adults-children
-            hotelListRequest.numberOfBedRooms = request.Itineraries.Count;
-            hotelListRequest.maxRatePlanCount = DEFAULT_MAX_NUMBER_OF_ROOM;
-            hotelListRequest.RoomGroup = new Expedia.HotelShoppingServiceReference.Room[hotelListRequest.numberOfBedRooms];
-            int index = 0;
-            foreach (HDSInterfaces.Itinerary itinerary in request.Itineraries)
-            {
-                Expedia.HotelShoppingServiceReference.Room room = new Expedia.HotelShoppingServiceReference.Room();
-                room.numberOfAdults     = itinerary.GetNumberOfAdult();
-                room.numberOfChildren   = itinerary.GetNumberOfChildren();
-                room.childAges          = itinerary.GetChildAges();
-
-                hotelListRequest.RoomGroup[index] = room;
-                index = index + 1;
-            }
+            rawRq.numberOfBedRooms = request.Itineraries.Count;
+            rawRq.maxRatePlanCount = DEFAULT_MAX_NUMBER_OF_ROOM;
+            rawRq.RoomGroup = commonHelper.GenerateRoomGroup(request.Itineraries);
 
             //location keyword or location(s) or list of hotelid
             switch (request.RequestType)
             {
                 case HDSRequestType.SearchByHotelIds:
-                    index = 0;
-                    hotelListRequest.hotelIdList = new long[request.Hotels.Count];
+                    int index = 0;
+                    rawRq.hotelIdList = new long[request.Hotels.Count];
                     foreach (HDSInterfaces.Hotel hotel in request.Hotels)
                     {
-                        hotelListRequest.hotelIdList[index] = (long)hotel.Id;
+                        rawRq.hotelIdList[index] = (long)hotel.Id;
                         index = index + 1;
                     }
 
                     break;
                 case HDSRequestType.SearchByLocationIds:
-                    hotelListRequest.destinationId = request.SearchCriteria.Locations[0].Code;
+                    rawRq.destinationId = request.SearchCriteria.Locations[0].Code;
                     break;
                 case HDSRequestType.SearchByLocationKeyword:
-                    hotelListRequest.destinationString = request.SearchCriteria.LocationKeyword;
+                    rawRq.destinationString = request.SearchCriteria.LocationKeyword;
                     break;
             }
 
             //submit soap request to expedia
             serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
-            HotelListResponse hotelListResponse = serviceObjShop.getList(hotelListRequest);
+            HotelListResponse rawRs = serviceObjShop.getList(rawRq);
 
-            return objMapping.MappingSearchResult(hotelListResponse);
+            return objMapping.MappingSearchResult(rawRs);
         }
 
         public HotelAvailabilityRS GetHotelAvailability(HDSRequest request)
         {
-            
+            HotelRoomAvailabilityRequest rawRq = new HotelRoomAvailabilityRequest();
+            rawRq = (HotelRoomAvailabilityRequest)commonHelper.GenerateBaseRequest(rawRq, request);
 
+            //stay date
+            rawRq.arrivalDate = request.StayDate.GetCheckInUSFormat();
+            rawRq.departureDate = request.StayDate.GetCheckOutUSFormat();
 
+            //hotel
+            rawRq.hotelId = (long)request.Hotels[0].Id;
 
+            //room and num adults-children
+            rawRq.RoomGroup = commonHelper.GenerateRoomGroup(request.Itineraries);
 
-            return null;
+            //include details
+            rawRq.includeDetails = true;
+            rawRq.includeDetailsSpecified = true;
+            rawRq.includeRoomImages = true;
+            rawRq.includeRoomImagesSpecified = true;
+
+            //submit soap request to expedia
+            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+            HotelRoomAvailabilityResponse rawRs = serviceObjShop.getAvailability(rawRq);
+
+            return objMapping.MappingHotelAvailability(rawRs);
         }
 
 

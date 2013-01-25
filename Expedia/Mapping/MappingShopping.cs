@@ -11,6 +11,7 @@ namespace Expedia
     public class MappingShopping
     {
         private string IMAGE_URL_PREFIX = "http://images.travelnow.com";
+        private CommonHelper helper = new CommonHelper();
 
         public SearchResultRS MappingSearchResult(HotelListResponse rawRs)
         {
@@ -63,17 +64,7 @@ namespace Expedia
 
                     //address and location
                     hotel.HotelInfo = new HotelInformation();
-                    hotel.HotelInfo.Address = new Address{
-                                                            Street1  = rawHotel.address1,
-                                                            Street2  = rawHotel.address2,
-                                                            City     = new City { Name = rawHotel.city },
-                                                            State    = rawHotel.stateProvinceCode,
-                                                            Postcode = rawHotel.postalCode,
-                                                            Country  = new Country { Code = rawHotel.countryCode }
-                                                         };
-                    hotel.HotelInfo.Address.LocationDescription = rawHotel.locationDescription;
-                    if (rawHotel.latitudeSpecified)  { hotel.HotelInfo.Address.Latitude   = rawHotel.latitude;  }
-                    if (rawHotel.longitudeSpecified) { hotel.HotelInfo.Address.Longtitude = rawHotel.longitude; }
+                    hotel.HotelInfo.Address = helper.GenerateHotelAddress(rawHotel);                   
 
                     //star rating
                     if (rawHotel.hotelRatingSpecified) { hotel.HotelInfo.StarRating = rawHotel.hotelRating; }
@@ -110,28 +101,8 @@ namespace Expedia
                                 room.Promotions.Add(new Promotion { Code = rawRoom.promoId, Description = rawRoom.promoDescription });
                             }
                             
-                            //rate total
-                            room.Rates = new RoomRate();
-                            room.Rates.TotalRate = new Rate{
-                                                            CurrencyCode = rawRoom.RateInfo.ChargeableRateInfo.currencyCode,
-                                                            SellRate = rawRoom.RateInfo.ChargeableRateInfo.total,      //this is total include tax
-                                                       };
-                            //tax total
-                            if (rawRoom.RateInfo.ChargeableRateInfo.surchargeTotalSpecified)
-                                room.Rates.TotalRate.TaxAndServiceFee = rawRoom.RateInfo.ChargeableRateInfo.surchargeTotal;
-
-                            //rate daily
-                            room.Rates.NightlyRate = new List<Rate>();
-                            foreach (NightlyRate rawNightlyRate in rawRoom.RateInfo.ChargeableRateInfo.NightlyRatesPerRoom.NightlyRate){
-                                HDSInterfaces.Rate rate = new Rate{
-                                                                    SellRate = rawNightlyRate.rate,
-                                                                    BaseRate = rawNightlyRate.baseRate,
-                                                                    CurrencyCode = room.Rates.TotalRate.CurrencyCode,
-                                                                    IsPromotionIncluded = rawNightlyRate.promo
-                                                              };
-
-                                room.Rates.NightlyRate.Add(rate);
-                            }
+                            //room rate total and nightly
+                            room.Rates = helper.GenerateRoomRate(rawRoom.RateInfo);
 
                             //value adds
                             if (rawRoom.ValueAdds != null){
@@ -173,5 +144,71 @@ namespace Expedia
 
             return rs;
         }
+
+
+        public HotelAvailabilityRS MappingHotelAvailability(HotelRoomAvailabilityResponse rawRs)
+        {
+            HotelAvailabilityRS rs = new HotelAvailabilityRS();
+
+            //init hotel
+            rs.Hotel = new HDSInterfaces.Hotel();
+            rs.Hotel.Id = rawRs.hotelId;
+            rs.Hotel.Name = rawRs.hotelName;
+
+            //hotel address info
+            rs.Hotel.HotelInfo = new HotelInformation();
+            rs.Hotel.HotelInfo.Address = new Address();
+            rs.Hotel.HotelInfo.Address.Street1 = rawRs.hotelAddress;
+            rs.Hotel.HotelInfo.Address.City = new City { Name = rawRs.hotelCity };
+            rs.Hotel.HotelInfo.Address.Country = new Country { Code = rawRs.hotelCountry };
+
+            //room
+            rs.Hotel.Rooms = new List<HDSInterfaces.Room>();
+            foreach (HotelRoomResponse rawRoom in rawRs.HotelRoomResponse)
+            {
+                HDSInterfaces.Room room = new HDSInterfaces.Room();
+
+                //room cancellation
+                room.CancellationPolicy = new CancellationPolicy { CancellationPolicyDescription = rawRoom.cancellationPolicy };
+                room.CancellationPolicy.IsNonRefundable = rawRoom.nonRefundable;
+
+                //room info
+                room.Name = rawRoom.rateDescription;
+                room.Description = rawRoom.rateDescription;
+                room.RoomInfo = new RoomInformation();
+
+                //room promotion
+                if (rawRoom.promoDescription != null){
+                    room.Promotions = new List<Promotion>();
+                    room.Promotions.Add(new Promotion { Code = rawRoom.promoId, Description = rawRoom.promoDescription });
+                }
+
+                //room bedding config
+                if (rawRoom.BedTypes != null)
+                    room.RoomInfo.BeddingDescription = rawRoom.BedTypes.BedType[0].description;
+
+                //room images
+                if (rawRoom.RoomImages != null){
+                    room.RoomInfo.Images = new List<HDSInterfaces.RoomImage>();
+                    room.RoomInfo.Images.Add(new HDSInterfaces.RoomImage { URL = rawRoom.RoomImages.RoomImage[0].url });
+                }
+
+                //value adds
+                if (rawRoom.ValueAdds != null){
+                    room.ValueAdds = new List<RoomValueAdd>();
+                    foreach (valueAdd rawValueAdd in rawRoom.ValueAdds.ValueAdd){
+                        room.ValueAdds.Add(new RoomValueAdd { Id = rawValueAdd.id, Description = rawValueAdd.description });
+                    }
+                }
+
+                //room rate total and nightly
+                room.Rates = helper.GenerateRoomRate(rawRoom.RateInfo);
+
+                rs.Hotel.Rooms.Add(room);
+            }
+
+            return rs;
+        }
+
     }
 }

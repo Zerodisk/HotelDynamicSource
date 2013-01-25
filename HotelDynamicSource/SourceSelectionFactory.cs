@@ -10,29 +10,9 @@ namespace HotelDynamicSource
 {
     public class SourceSelectionFactory
     {
-        public IHDSHotelShopping CreateSourceShopping(HDSSource sourceCode)
+        public IHDSHotelContent CreateSourceContent(HDSSource sourceCode)
         {
-            IHDSHotelShopping source;
-
-            switch (sourceCode)
-            {
-                case HDSSource.Expedia: 
-                    source = new ExpediaManager();
-                    break;
-                case HDSSource.Orbitz: 
-                    source = new OrbitzManager();
-                    break;
-                default:
-                    source = null;
-                    break;
-            }
-
-            return source;
-        }
-
-        public IHDSHotelBooking CreateSourceBooking(HDSSource sourceCode)
-        {
-            IHDSHotelBooking source;
+            IHDSHotelContent source = null;
 
             switch (sourceCode)
             {
@@ -42,8 +22,42 @@ namespace HotelDynamicSource
                 case HDSSource.Orbitz:
                     source = new OrbitzManager();
                     break;
-                default:
-                    source = null;
+                case HDSSource.Local:                   // local source is internal source where we store information locally in database (e.g. hotel contents)
+                    source = null;          
+                    break;
+            }
+
+            return source;
+        }
+
+        public IHDSHotelShopping CreateSourceShopping(HDSSource sourceCode)
+        {
+            IHDSHotelShopping source = null;
+
+            switch (sourceCode)
+            {
+                case HDSSource.Expedia: 
+                    source = new ExpediaManager();
+                    break;
+                case HDSSource.Orbitz: 
+                    source = new OrbitzManager();
+                    break;
+            }
+
+            return source;
+        }
+
+        public IHDSHotelBooking CreateSourceBooking(HDSSource sourceCode)
+        {
+            IHDSHotelBooking source = null;
+
+            switch (sourceCode)
+            {
+                case HDSSource.Expedia:
+                    source = new ExpediaManager();
+                    break;
+                case HDSSource.Orbitz:
+                    source = new OrbitzManager();
                     break;
             }
 

@@ -7,7 +7,7 @@ namespace HDSInterfaces
 {
     public enum HDSSource
     {
-        NoSource = 0,
+        Local    = 0,
         Expedia  = 1,
         Orbitz   = 2
     }

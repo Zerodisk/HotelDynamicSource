@@ -8,7 +8,7 @@ namespace HDSInterfaces
     public class HDSProviderBase : IHDSHotelContent, IHDSHotelShopping, IHDSHotelBooking  
     {
         //hotel content
-        public virtual Hotel GetHotelInfo(HDSRequest request)
+        public virtual HotelContentRS GetHotelInfo(HDSRequest request)
         {
             return null;
         }

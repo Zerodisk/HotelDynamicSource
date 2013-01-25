@@ -12,7 +12,65 @@ namespace TestHarness
     {
         static void Main(string[] args)
         {
-            
+            testHotelAvailability();
+            //testSearchResult();
+            //testeHotelInfo();
+        }
+
+        static void testHotelAvailability()
+        {
+            SourceSelectionFactory factory = new SourceSelectionFactory();
+            HDSRequest rq = new HDSRequest(HDSRequestType.SearchByHotelId);
+            rq.StayDate = new StayDate();
+            rq.StayDate.CheckIn = "2013-03-17";
+            rq.StayDate.CheckOut = "2013-03-19";
+
+            rq.Session.CurrencyCode = "AUD";
+
+            rq.Hotels = new List<Hotel>();
+            rq.Hotels.Add(new Hotel { Id = 115094 });
+
+            rq.Itineraries = new List<Itinerary>();
+            rq.Itineraries.Add(new Itinerary(1, "1_2"));
+
+            Console.WriteLine(objectToJson(rq));
+            Console.WriteLine("\n------------------------------\n");
+            Console.Write("Press enter key to continue..");
+            Console.ReadLine();
+            Console.Write("...\n");
+
+
+            IHDSHotelShopping obj = factory.CreateSourceShopping(HDSSource.Expedia);
+            HotelAvailabilityRS rs = obj.GetHotelAvailability(rq);
+
+            Console.WriteLine(objectToJson(rs));
+            Console.ReadLine();
+        }
+
+        static void testeHotelInfo()
+        {
+            SourceSelectionFactory factory = new SourceSelectionFactory();
+            HDSRequest rq = new HDSRequest(HDSRequestType.HotelContent);
+            rq.Hotels = new List<Hotel>();
+            rq.Hotels.Add(new Hotel { Id = 115094 });
+
+            Console.WriteLine(objectToJson(rq));
+            Console.WriteLine("\n------------------------------\n");
+            Console.Write("Press enter key to continue..");
+            Console.ReadLine();
+            Console.Write("...\n");
+
+
+            IHDSHotelContent contentObj = factory.CreateSourceContent(HDSSource.Expedia);
+            HotelContentRS rs = contentObj.GetHotelInfo(rq);
+
+
+            Console.WriteLine(objectToJson(rs));
+            Console.ReadLine();
+        }
+
+        static void testSearchResult()
+        {
             SourceSelectionFactory factory = new SourceSelectionFactory();
 
             /*
@@ -23,7 +81,7 @@ namespace TestHarness
 
             HDSRequest rq = new HDSRequest(HDSRequestType.SearchByLocationKeyword);
             rq.StayDate = new StayDate();
-            rq.StayDate.CheckIn  = "2013-03-17";
+            rq.StayDate.CheckIn = "2013-03-17";
             rq.StayDate.CheckOut = "2013-03-19";
 
             rq.Session.CurrencyCode = "AUD";
@@ -39,30 +97,22 @@ namespace TestHarness
             rq.SearchCriteria.MinStarRating = 4;
             rq.SearchCriteria.MaxStarRating = 5;
 
-            /*
-            rq.Hotels = new List<Hotel>();
-            Hotel aHotel = new Hotel();
-            aHotel.Id = 96768574;
-            aHotel.Name = "Hilton";
-            rq.Hotels.Add(aHotel);
-            */
-
             rq.Itineraries = new List<Itinerary>();
-            Itinerary itinerary = new Itinerary(1, "1_2");
-            rq.Itineraries.Add(itinerary);
+            rq.Itineraries.Add(new Itinerary(1, "1_2"));
+            rq.Itineraries.Add(new Itinerary(2));
 
 
             Console.WriteLine(objectToJson(rq));
             Console.WriteLine("\n------------------------------\n");
-            Console.Write("Press enter key to continue");
+            Console.Write("Press enter key to continue..");
             Console.ReadLine();
-            Console.Write("..\n");
-            
+            Console.Write("...\n");
+
 
             IHDSHotelShopping shoppingObj = factory.CreateSourceShopping(HDSSource.Expedia);     //call Expedia
-            SearchResultRS rs  = shoppingObj.GetSearchResult(rq);
+            SearchResultRS rs = shoppingObj.GetSearchResult(rq);
 
-            
+
             Console.WriteLine(objectToJson(rs));
             Console.ReadLine();
         }

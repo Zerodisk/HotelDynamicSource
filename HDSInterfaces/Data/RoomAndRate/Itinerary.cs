@@ -10,7 +10,7 @@ namespace HDSInterfaces
 
         public HDSSmokingPreference SmokingPreference { get; set; }
 
-        public Itinerary()
+        private void init()
         {
             SmokingPreference = HDSSmokingPreference.NoPreference;
 
@@ -20,15 +20,23 @@ namespace HDSInterfaces
             }
         }
 
+        public Itinerary()
+        {
+            this.init();
+        }
+
         public Itinerary(int numAdult, string childrenPhase)
         {
-            SmokingPreference = HDSSmokingPreference.NoPreference;
-
-            if (Guests == null){
-                Guests = new List<Guest>();
-            }
+            this.init();
 
             this.SetGuest(numAdult, childrenPhase);
+        }
+
+        public Itinerary(int numAdult)
+        {
+            this.init();
+
+            this.SetGuest(numAdult, null);
         }
 
         public int GetNumberOfAdult()
@@ -89,6 +97,8 @@ namespace HDSInterfaces
          */
         private void SetGuest(int numAdult, string childrenPhase)
         {
+            if (string.IsNullOrEmpty(childrenPhase)) { childrenPhase = "0"; }
+
             for (int i = 0; i <= numAdult-1; i++)
             {
                 Guest guest = new Guest();

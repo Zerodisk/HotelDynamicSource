@@ -11,7 +11,7 @@ namespace HDSInterfaces
         public string BeddingDescription { get; set; }
 
         //room info
-        public List<Amenities> Amenities { get; set; }
+        public List<Amenity> Amenities { get; set; }
 
         //images
         public List<RoomImage> Images { get; set; }

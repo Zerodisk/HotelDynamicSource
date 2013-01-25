@@ -16,7 +16,7 @@ namespace Expedia
  
         }
 
-        public override Hotel GetHotelInfo(HDSRequest request)
+        public override HotelContentRS GetHotelInfo(HDSRequest request)
         {
             contentHelper = new ContentHelper();
 

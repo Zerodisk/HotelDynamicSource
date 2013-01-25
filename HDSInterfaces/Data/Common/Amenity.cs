@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class Amenities : Identification 
+    public class Amenity : Identification 
     {
         public string Title { get; set; }
         public string Type { get; set; }
