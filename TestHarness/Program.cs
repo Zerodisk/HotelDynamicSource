@@ -19,7 +19,6 @@ namespace TestHarness
 
         static void testHotelAvailability()
         {
-            SourceSelectionFactory factory = new SourceSelectionFactory();
             HDSRequest rq = new HDSRequest(HDSRequestType.SearchByHotelId);
             rq.StayDate = new StayDate();
             rq.StayDate.CheckIn = "2013-03-17";
@@ -40,8 +39,8 @@ namespace TestHarness
             Console.Write("...\n");
 
 
-            IHDSHotelShopping obj = factory.CreateSourceShopping(HDSSource.Expedia);
-            HotelAvailabilityRS rs = obj.GetHotelAvailability(rq);
+            HDSManager manager = new HDSManager();
+            HotelAvailabilityRS rs = manager.GetHotelAvailability(rq);
 
             Console.WriteLine(objectToJson(rs));
             Console.ReadLine();
@@ -49,7 +48,6 @@ namespace TestHarness
 
         static void testeHotelInfo()
         {
-            SourceSelectionFactory factory = new SourceSelectionFactory();
             HDSRequest rq = new HDSRequest(HDSRequestType.HotelContent);
             rq.Hotels = new List<Hotel>();
             rq.Hotels.Add(new Hotel { Id = 115094 });
@@ -61,8 +59,8 @@ namespace TestHarness
             Console.Write("...\n");
 
 
-            IHDSHotelContent contentObj = factory.CreateSourceContent(HDSSource.Expedia);
-            HotelContentRS rs = contentObj.GetHotelInfo(rq);
+            HDSManager manager = new HDSManager();
+            HotelContentRS rs = manager.GetHotelInfo(rq);
 
 
             Console.WriteLine(objectToJson(rs));
@@ -71,14 +69,6 @@ namespace TestHarness
 
         static void testSearchResult()
         {
-            SourceSelectionFactory factory = new SourceSelectionFactory();
-
-            /*
-            IHDSHotelBooking bookingObj = factory.CreateSourceBooking(HDSSource.Orbitz);
-            bookingObj.GetHotelRateRule(null);                                                  //call base method as expedia doesn't have RateRules
-            bookingObj.MakeHotelReservation(null);                                              //call expedia
-            */
-
             HDSRequest rq = new HDSRequest(HDSRequestType.SearchByLocationKeyword);
             rq.StayDate = new StayDate();
             rq.StayDate.CheckIn = "2013-03-17";
@@ -109,8 +99,8 @@ namespace TestHarness
             Console.Write("...\n");
 
 
-            IHDSHotelShopping shoppingObj = factory.CreateSourceShopping(HDSSource.Expedia);     //call Expedia
-            SearchResultRS rs = shoppingObj.GetSearchResult(rq);
+            HDSManager manager = new HDSManager();
+            SearchResultRS rs = manager.GetSearchResult(rq);
 
 
             Console.WriteLine(objectToJson(rs));
@@ -127,7 +117,6 @@ namespace TestHarness
             
             string output = JsonConvert.SerializeObject(obj, Formatting.Indented, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
             
-
             return output;
         }
     }
