@@ -12,9 +12,21 @@ namespace TestHarness
     {
         static void Main(string[] args)
         {
-            testHotelAvailability();
+            //testHotelAvailability();
             //testSearchResult();
             //testeHotelInfo();
+            testEnum();
+        }
+
+        static void testEnum()
+        {
+            foreach (HDSSource a in Enum.GetValues(typeof(HDSSource)))
+            {
+                Console.WriteLine((int)a);
+                
+            }
+
+            Console.ReadLine();
         }
 
         static void testHotelAvailability()

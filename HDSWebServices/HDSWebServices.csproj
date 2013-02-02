@@ -69,6 +69,10 @@
     <Compile Include="GetData.aspx.designer.cs">
       <DependentUpon>GetData.aspx</DependentUpon>
     </Compile>
+    <Compile Include="MappingRequest\HotelAvailability.cs" />
+    <Compile Include="MappingRequest\HotelContent.cs" />
+    <Compile Include="MappingRequest\RequestManager.cs" />
+    <Compile Include="MappingRequest\SearchResult.cs" />
     <Compile Include="OutputFormatter.cs" />
     <Compile Include="Service1.asmx.cs">
       <DependentUpon>Service1.asmx</DependentUpon>
