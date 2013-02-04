@@ -22,6 +22,7 @@ namespace Expedia
         //create all the neccessary property for expedia general request parameter
         public Expedia.HotelShoppingServiceReference.HotelBaseRequest GenerateBaseRequest(HotelBaseRequest hotelRequest, HDSRequest request)
         {
+            //will need to get apiKey and cid from database base on "request.Session.SiteId"
             hotelRequest.apiKey = "nt2cqy75cmqumtjm2pscc7py";
             hotelRequest.cid = 55505;
 
@@ -30,7 +31,7 @@ namespace Expedia
             hotelRequest.customerUserAgent = request.Session.BrowserUserAgent;
 
             hotelRequest.currencyCode = request.Session.CurrencyCode;
-            hotelRequest.locale = DEFAULT_LOCALE;
+            hotelRequest.locale = this.MapLocale(request.Session.Locale);
 
             return hotelRequest;
         }
@@ -124,6 +125,20 @@ namespace Expedia
         }
 
 
+
+        /*
+         * function return mapping locale
+         *  map from string local to expedia locale
+         */ 
+        private Expedia.HotelShoppingServiceReference.LocaleType MapLocale(string locale)
+        {
+            foreach (Expedia.HotelShoppingServiceReference.LocaleType localType in Enum.GetValues(typeof(Expedia.HotelShoppingServiceReference.LocaleType))){
+                if (localType.ToString() == locale) { return localType; }
+            }
+
+            //return default if not matched
+            return DEFAULT_LOCALE;
+        }
 
         
 

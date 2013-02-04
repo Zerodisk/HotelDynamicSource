@@ -1,22 +1,28 @@
 ﻿/*
  * REST request parameter with query string (this is case sensitive querystring name)
  * 
- * - cmdType  = type of request (e.g. 10 = SearchByLocationKeyword, 20 = SearchByHotelId)
- * - source   = provide source (e.g. 1 = expedia (default) and 2 = orbitz)
- * - clientId = unique ID for client on HDS system
- *
- * - checkIn
- * - checkOut
- * - currCode
- * - locale
- * - pageIndex
- * - pageSize
- * 
+ * - cmdType            = type of request (e.g. 10 = SearchByLocationKeyword, 20 = SearchByHotelId)
+ * - source             = provide source (e.g. 1 = expedia (default) and 2 = orbitz)
  * - ipAddress          = customer ip address
  * - userAgent          = customer browser user agent
  * - sessionId          = customer session id
  * 
+ * - siteId             = unique ID for client/website on HDS system
+ * - crc                = the encrypted hash to validate the request
+ * 
+ * - checkIn            = check in date in format of yyyy-MM-dd
+ * - checkOut           = check out date in format of yyyy-MM-dd
+ * - currCode           = currency code (e.g. AUD, USD)
+ * - locale             = locale (e.g. en_AU, th_TH)
+ * 
+ * - pageIndex          = page index of search result (start with 1)
+ * - pageSize           = page size of search result (max hotel result display per page)
  * - locationKeyword    = location keyword
+ * - locationId         = location id
+ * - locationIds        = list of location id separate by comma (not in used, orbitz and extedia are accept only 1 at the moment)
+ * - minStar            = minimum hotel star rating
+ * - maxStar            = maximum hotel star rating
+ * 
  * - hotelId            = a single hotelID
  * - hotelIds           = multiple hotelID separate by comma (may use in seach by hotel name and get list of hotel Id)
  * 
@@ -62,6 +68,7 @@ namespace HDSWebServices
              * 
              */
 
+
             //get type of request (e.g search result, hotel avail)
             int cmdType = int.Parse(httpRq["cmdType"]);         
             HDSRequest request = new HDSRequest(MapRequestType(cmdType));
@@ -71,6 +78,14 @@ namespace HDSWebServices
             if (!string.IsNullOrEmpty(source)){
                 request.Session.SourceProvider = this.MapProviderSource(source);
             }
+
+            request.Session.ClientIpAddress   = httpRq.UserHostAddress;
+            request.Session.CustomerIpAddress = httpRq["ipAddress"];
+            request.Session.BrowserUserAgent  = httpRq["userAgent"];
+            request.Session.SessionId         = httpRq["sessionId"];
+
+            request.Session.SiteId            = httpRq["siteId"];
+
 
             //process request by request type
             switch (request.RequestType)

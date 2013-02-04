@@ -19,11 +19,5 @@ namespace Expedia
             return null;
         }
 
-        private HotelBaseRequest GenerateBaseRequest(HotelBaseRequest rq)
-        {
-
-
-            return rq;
-        }
     }
 }
