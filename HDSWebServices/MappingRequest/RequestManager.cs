@@ -22,10 +22,23 @@ namespace HDSWebServices
          */ 
         public HDSRequest GetRequest(HttpRequest httpRq)
         {
-            int source  = int.Parse(httpRq["source"]);          //select provider source (e.g. expedia, orbitz)
-            int cmdType = int.Parse(httpRq["cmdType"]);         //type of request (e.g search result, hotel avail)
+            /*
+             * 
+             * validation request 
+             * 
+             */
+
+            //get type of request (e.g search result, hotel avail)
+            int cmdType = int.Parse(httpRq["cmdType"]);         
             HDSRequest request = new HDSRequest(MapRequestType(cmdType));
 
+            //get select provider source (e.g. expedia, orbitz)
+            string source = httpRq["source"];                  
+            if (!string.IsNullOrEmpty(source)){
+                request.Session.SourceProvider = this.MapProviderSource(source);
+            }
+
+            //process request by request type
             switch (request.RequestType)
             {
                 case HDSRequestType.SearchByLocationKeyword:
@@ -78,7 +91,9 @@ namespace HDSWebServices
 
 
 
-        //return main hotel dynamic source object
+        /*
+         * return main hotel dynamic source object
+         */ 
         private HDSManager GetSourceManager()
         {
             HDSManager manager = new HDSManager();
@@ -91,10 +106,18 @@ namespace HDSWebServices
          *  1 = expedia
          *  2 = orbtiz
          */ 
-        private HDSSource MapProviderSource(int source)
+        private HDSSource MapProviderSource(string source)
         {
+            int sourceInt;
+            try {
+                sourceInt = int.Parse(source);
+            }
+            catch {
+                sourceInt = 1;      //int parse failed, use expedia as default
+            }
+
             foreach (HDSSource s in Enum.GetValues(typeof(HDSSource))){
-                if ((int)s == source){return s;}
+                if ((int)s == sourceInt){return s;}
             }
 
             return HDSSource.Expedia;       //default is expedia;

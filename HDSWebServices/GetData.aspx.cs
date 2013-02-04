@@ -45,6 +45,7 @@ namespace HDSWebServices
         private void RendeResponse(string json)
         {
             //set http header (e.g. content type, etc)
+            Response.AddHeader("Content-Type", "application/json");
             Response.Write(json);
         }
     }
