@@ -1,4 +1,38 @@
-﻿using System;
+﻿/*
+ * REST request parameter with query string (this is case sensitive querystring name)
+ * 
+ * - cmdType  = type of request (e.g. 10 = SearchByLocationKeyword, 20 = SearchByHotelId)
+ * - source   = provide source (e.g. 1 = expedia (default) and 2 = orbitz)
+ * - clientId = unique ID for client on HDS system
+ *
+ * - checkIn
+ * - checkOut
+ * - currCode
+ * - locale
+ * - pageIndex
+ * - pageSize
+ * 
+ * - ipAddress          = customer ip address
+ * - userAgent          = customer browser user agent
+ * - sessionId          = customer session id
+ * 
+ * - locationKeyword    = location keyword
+ * - hotelId            = a single hotelID
+ * - hotelIds           = multiple hotelID separate by comma (may use in seach by hotel name and get list of hotel Id)
+ * 
+ * - numRoom            = number of room
+ * ********** if numRoom = 1 ****************
+ * - numAdult                               = number of adult
+ * - numChild                               = string pattern n_x_y_z, n number of children, x,y and z is age of each child (e.g. 1 child age 5 = 1_5), (e.g. 2 children with age 2 and 6 = 2_2_6)
+ * - roomCode                               = room unique identification code
+ * ********** if numRoom > 2 ****************
+ * - numAdult1, numAdult2, ..... numAdultN  = number of adult for muliple room
+ * - numChild1, numChild2, ..... numChildN  = number of chidren for multiple room
+ * - roomCode1, roomCode2, ..... roomCodeN  = room unique identification code
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
