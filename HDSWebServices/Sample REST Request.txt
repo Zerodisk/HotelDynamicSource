@@ -21,5 +21,10 @@ Search result by list of hotel id
 &ipAddress=203.1.2.3&sessionId&userAgent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.1%20(KHTML%2C%20like%20Gecko)%20Chrome%2F22.0.1207.1%20Safari%2F537.1
 
 
+<?php
 
-	
+	//this is how to write file json
+$file = 'jp_test.json';
+file_put_contents($file, "\xEF\xBB\xBF".  $json); 
+
+?>

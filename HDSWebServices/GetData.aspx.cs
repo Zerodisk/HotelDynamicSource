@@ -62,7 +62,9 @@ namespace HDSWebServices
         private void RendeResponse(string json)
         {
             //set http header (e.g. content type, etc)
-            Response.AddHeader("Content-Type", "application/json");
+            Response.AddHeader("Content-Type", "application/json; charset=utf-8 ");
+            Response.Charset         = "UTF-8";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
             Response.Write(json);
         }
 
