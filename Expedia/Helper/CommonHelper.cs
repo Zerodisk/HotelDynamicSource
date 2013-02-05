@@ -24,13 +24,14 @@ namespace Expedia
             //will need to get apiKey and cid from database base on "request.Session.SiteId"
             hotelRequest.apiKey = "nt2cqy75cmqumtjm2pscc7py";
             hotelRequest.cid = 55505;
-
+            
             hotelRequest.customerIpAddress = request.Session.CustomerIpAddress;
             hotelRequest.customerSessionId = request.Session.SessionId;
             hotelRequest.customerUserAgent = request.Session.BrowserUserAgent;
 
             hotelRequest.currencyCode = request.Session.CurrencyCode;
             hotelRequest.locale = this.MapLocale(request.Session.Locale);
+            hotelRequest.localeSpecified = true;
 
             return hotelRequest;
         }

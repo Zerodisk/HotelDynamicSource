@@ -23,6 +23,7 @@ namespace Expedia
                     //warning about location
                     rs.Warnings = new List<WarningAndError>();
                     WarningAndError warning = new WarningAndError {
+                                                                     Id                = 9002,
                                                                      Type              = rawRs.EanWsError.category.ToString(),
                                                                      Message           = rawRs.EanWsError.presentationMessage,
                                                                      DetailDescription = rawRs.EanWsError.verboseMessage
@@ -33,7 +34,8 @@ namespace Expedia
                     //error! something has happened
                     rs.Errors = new List<WarningAndError>();
                     WarningAndError error = new WarningAndError{
-                                                                 Type = rawRs.EanWsError.category.ToString(),
+                                                                 Id                = 9001,
+                                                                 Type              = rawRs.EanWsError.category.ToString(),
                                                                  Message           = rawRs.EanWsError.presentationMessage,
                                                                  DetailDescription = rawRs.EanWsError.verboseMessage
                                                                };
@@ -58,7 +60,7 @@ namespace Expedia
                     hotel.Name = rawHotel.name;
 
                     /* ****************** for testing ****************** */
-                    if (hotel.Id == 356393) { string breakkkkkkk = ""; }
+                    //if (hotel.Id == 356393) { string breakkkkkkk = ""; }
                     /* ****************** for testing ****************** */
 
                     //address and location
@@ -149,62 +151,81 @@ namespace Expedia
         {
             HotelAvailabilityRS rs = new HotelAvailabilityRS();
 
-            //init hotel
-            rs.Hotel = new HDSInterfaces.Hotel();
-            rs.Hotel.Id = rawRs.hotelId;
-            rs.Hotel.Name = rawRs.hotelName;
-
-            //hotel address info
-            rs.Hotel.HotelInfo = new HotelInformation();
-            rs.Hotel.HotelInfo.Address = new Address();
-            rs.Hotel.HotelInfo.Address.Street1 = rawRs.hotelAddress;
-            rs.Hotel.HotelInfo.Address.City = new City { Name = rawRs.hotelCity };
-            rs.Hotel.HotelInfo.Address.Country = new Country { Code = rawRs.hotelCountry };
-
-            //room
-            rs.Hotel.Rooms = new List<HDSInterfaces.Room>();
-            foreach (HotelRoomResponse rawRoom in rawRs.HotelRoomResponse)
+            //EAN warning and error
+            if (rawRs.EanWsError != null)
             {
-                HDSInterfaces.Room room = new HDSInterfaces.Room();
-
-                //room cancellation
-                room.CancellationPolicy = new CancellationPolicy { CancellationPolicyDescription = rawRoom.cancellationPolicy };
-                room.CancellationPolicy.IsNonRefundable = rawRoom.nonRefundable;
-
-                //room info
-                room.Name = rawRoom.rateDescription;
-                room.Description = rawRoom.rateDescription;
-                room.RoomInfo = new RoomInformation();
-
-                //room promotion
-                if (rawRoom.promoDescription != null){
-                    room.Promotions = new List<Promotion>();
-                    room.Promotions.Add(new Promotion { Code = rawRoom.promoId, Description = rawRoom.promoDescription });
-                }
-
-                //room bedding config
-                if (rawRoom.BedTypes != null)
-                    room.RoomInfo.BeddingDescription = rawRoom.BedTypes.BedType[0].description;
-
-                //room images
-                if (rawRoom.RoomImages != null){
-                    room.RoomInfo.Images = new List<HDSInterfaces.RoomImage>();
-                    room.RoomInfo.Images.Add(new HDSInterfaces.RoomImage { URL = rawRoom.RoomImages.RoomImage[0].url });
-                }
-
-                //value adds
-                if (rawRoom.ValueAdds != null){
-                    room.ValueAdds = new List<RoomValueAdd>();
-                    foreach (valueAdd rawValueAdd in rawRoom.ValueAdds.ValueAdd){
-                        room.ValueAdds.Add(new RoomValueAdd { Id = rawValueAdd.id, Description = rawValueAdd.description });
-                    }
-                }
-
-                //room rate total and nightly
-                room.Rates = helper.GenerateRoomRate(rawRoom.RateInfo);
-
-                rs.Hotel.Rooms.Add(room);
+                //error! something has happened
+                rs.Errors = new List<WarningAndError>();
+                WarningAndError error = new WarningAndError
+                {
+                    Id = 9001,
+                    Type = rawRs.EanWsError.category.ToString(),
+                    Message = rawRs.EanWsError.presentationMessage,
+                    DetailDescription = rawRs.EanWsError.verboseMessage
+                };
+                rs.Errors.Add(error);
             }
+            else
+            {
+
+                //init hotel
+                rs.Hotel = new HDSInterfaces.Hotel();
+                rs.Hotel.Id = rawRs.hotelId;
+                rs.Hotel.Name = rawRs.hotelName;
+
+                //hotel address info
+                rs.Hotel.HotelInfo = new HotelInformation();
+                rs.Hotel.HotelInfo.Address = new Address();
+                rs.Hotel.HotelInfo.Address.Street1 = rawRs.hotelAddress;
+                rs.Hotel.HotelInfo.Address.City = new City { Name = rawRs.hotelCity };
+                rs.Hotel.HotelInfo.Address.Country = new Country { Code = rawRs.hotelCountry };
+
+                //room
+                rs.Hotel.Rooms = new List<HDSInterfaces.Room>();
+                foreach (HotelRoomResponse rawRoom in rawRs.HotelRoomResponse)
+                {
+                    HDSInterfaces.Room room = new HDSInterfaces.Room();
+
+                    //room cancellation
+                    room.CancellationPolicy = new CancellationPolicy { CancellationPolicyDescription = rawRoom.cancellationPolicy };
+                    room.CancellationPolicy.IsNonRefundable = rawRoom.nonRefundable;
+
+                    //room info
+                    room.Name = rawRoom.rateDescription;
+                    room.Description = rawRoom.rateDescription;
+                    room.RoomInfo = new RoomInformation();
+
+                    //room promotion
+                    if (rawRoom.promoDescription != null){
+                        room.Promotions = new List<Promotion>();
+                        room.Promotions.Add(new Promotion { Code = rawRoom.promoId, Description = rawRoom.promoDescription });
+                    }
+
+                    //room bedding config
+                    if (rawRoom.BedTypes != null)
+                        room.RoomInfo.BeddingDescription = rawRoom.BedTypes.BedType[0].description;
+
+                    //room images
+                    if (rawRoom.RoomImages != null){
+                        room.RoomInfo.Images = new List<HDSInterfaces.RoomImage>();
+                        room.RoomInfo.Images.Add(new HDSInterfaces.RoomImage { URL = rawRoom.RoomImages.RoomImage[0].url });
+                    }
+
+                    //value adds
+                    if (rawRoom.ValueAdds != null){
+                        room.ValueAdds = new List<RoomValueAdd>();
+                        foreach (valueAdd rawValueAdd in rawRoom.ValueAdds.ValueAdd){
+                            room.ValueAdds.Add(new RoomValueAdd { Id = rawValueAdd.id, Description = rawValueAdd.description });
+                        }
+                    }
+
+                    //room rate total and nightly
+                    room.Rates = helper.GenerateRoomRate(rawRoom.RateInfo);
+
+                    rs.Hotel.Rooms.Add(room);
+                }
+            }
+
 
             return rs;
         }

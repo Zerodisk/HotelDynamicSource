@@ -98,8 +98,8 @@ namespace HDSWebServices
                 //currency and locale
                 request.Session.CurrencyCode      = httpRq["currCode"];
                 request.Session.Locale            = httpRq["locale"];
-                //validate currency
-                if (string.IsNullOrEmpty(request.Session.CurrencyCode))
+                //validate currency only non-hotelcontent request
+                if ((string.IsNullOrEmpty(request.Session.CurrencyCode)) && (request.RequestType != HDSRequestType.HotelContent))
                 {
                     request.Error = new WarningAndError { Id = (long)ErrorCode.RequestCurrencyCodeMissing, Message = "CurrencyCode is missing" };
                     return request;
