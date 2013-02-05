@@ -46,9 +46,6 @@
     <Reference Include="System.Web.Extensions">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -58,11 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="GetData.aspx" />
-    <Content Include="index.html" />
+    <Content Include="Sample REST Request.txt" />
     <Content Include="Service1.asmx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enums.cs" />
     <Compile Include="GetData.aspx.cs">
       <DependentUpon>GetData.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -72,7 +70,8 @@
     </Compile>
     <Compile Include="MappingRequest\HotelAvailability.cs" />
     <Compile Include="MappingRequest\HotelContent.cs" />
-    <Compile Include="MappingRequest\RequestManager.cs" />
+    <Compile Include="RequestHelper.cs" />
+    <Compile Include="RequestManager.cs" />
     <Compile Include="MappingRequest\SearchResult.cs" />
     <Compile Include="OutputFormatter.cs" />
     <Compile Include="Service1.asmx.cs">

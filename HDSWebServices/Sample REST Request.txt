@@ -1,0 +1,16 @@
+﻿Content
+	getdata.aspx?cmdType=50&source=1&hotelID=115094
+
+
+Hotel Availiability without extra content
+	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2
+Hotel Availiability with extra content
+	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&contentRequested=true
+
+
+Search result by location keyword
+	getdata.aspx?cmdType=10&source=1&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&currCode=AUD&locationKeyword=Osaka
+Search result by location id
+	getdata.aspx?cmdType=11&source=1&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&currCode=AUD&locationId=D06C6F8B-29A9-4475-8446-E2EA600FD97C
+Search result by list of hotel id
+	getdata.aspx?cmdType=12&source=1&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&currCode=AUD&hotelIds=311413,115094,130663  

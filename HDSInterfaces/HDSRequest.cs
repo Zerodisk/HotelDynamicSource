@@ -22,14 +22,33 @@ namespace HDSInterfaces
         //reservation   - request for booking/customer details/credit card details
         public ReservationInformation ReservationInfo { get; set; }
 
+        //error in request
+        public WarningAndError Error { get; set; }
+
         /*
          * this is the onle single construction and it needed type of request in order to create this request object
          */ 
         public HDSRequest(HDSRequestType requestType)
         {
             Session = new Session();
+            Session.PageIndex       = 1;
+            Session.PageSize        = 50;
+            Session.Locale          = "en_US";
+            Session.SourceProvider  = HDSSource.Expedia;
+
             RequestType = requestType;
-            IsContentRequested = true;      //just for started because no time to finish client
+            IsContentRequested = false;      
+        }
+
+        public bool IsRequestError
+        {
+            get
+            {
+                if (Error == null)
+                    return false;   //no error
+                else
+                    return true;
+            }
         }
         
     }

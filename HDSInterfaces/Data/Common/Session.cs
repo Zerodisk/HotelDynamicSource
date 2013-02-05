@@ -45,14 +45,6 @@ namespace HDSInterfaces
          * sha1(2013-01-12#2013-01-15#101-201301171340-qlkdufp#1234#sha1(abcd))
          */
 
-        //constructure init default value
-        public Session()
-        {
-            PageIndex       = 1;
-            PageSize        = 50;
-            Locale          = "en_US";
-            SourceProvider  = HDSSource.Expedia;
-        }
 
     }
 }

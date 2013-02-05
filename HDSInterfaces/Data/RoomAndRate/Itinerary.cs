@@ -69,6 +69,12 @@ namespace HDSInterfaces
 
 
 
+
+
+
+
+
+
         /*
          * function return number of guest type
          */ 

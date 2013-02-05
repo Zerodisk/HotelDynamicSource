@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 
 using HDSInterfaces;
@@ -13,40 +12,79 @@ namespace HDSWebServices
         protected void Page_Load(object sender, EventArgs e)
         {
             //create neccessary objects
-            string json;
+            string json = "";
             RequestManager rqManager = new RequestManager();
 
             //generate HDSRequest
             HDSRequest rq = rqManager.GetRequest(Request);
 
-            //swithc to get response
-            switch (rq.RequestType)
+            if (rq.IsRequestError)
             {
-                case HDSRequestType.SearchByLocationKeyword:
-                    json = rqManager.GetSearchResult(rq);
-                    this.RendeResponse(json);
-                    break;
-                case HDSRequestType.SearchByHotelId:
-                    json = rqManager.GetHotelAvailability(rq);
-                    this.RendeResponse(json);
-                    break;
-                case HDSRequestType.HotelContent:
-                    json = rqManager.GetHotelInfo(rq);
-                    this.RendeResponse(json);
-                    break;
-                default:
-                    //request type unknown
-
-
-                    break;
+                //error in generate HDSRequest object
+                json = this.GenerateJson(this.GenerateError((long)rq.Error.Id, rq.Error.Message));
             }
+            else
+            {
+                //switch to get response
+                switch (rq.RequestType)
+                {
+                    case HDSRequestType.SearchByLocationKeyword:
+                        json = rqManager.GetSearchResult(rq);
+                        break;
+                    case HDSRequestType.SearchByLocationIds:
+                        json = rqManager.GetSearchResult(rq);
+                        break;
+                    case HDSRequestType.SearchByHotelIds:
+                        json = rqManager.GetSearchResult(rq);
+                        break;
+                    case HDSRequestType.SearchByHotelId:
+                        json = rqManager.GetHotelAvailability(rq);
+                        break;
+                    case HDSRequestType.HotelContent:
+                        json = rqManager.GetHotelInfo(rq);
+                        break;
+                }
+            }
+
+            this.RendeResponse(json);
         }
 
+
+
+
+
+
+
+
+        /*
+         * this is main function for returning response with specific header
+         */ 
         private void RendeResponse(string json)
         {
             //set http header (e.g. content type, etc)
             Response.AddHeader("Content-Type", "application/json");
             Response.Write(json);
+        }
+
+        /*
+         * for generate error object for a given error id and message
+         */ 
+        private BaseResponse GenerateError(long id, string message)
+        {
+            BaseResponse rs = new BaseResponse();
+            rs.Session      = null;
+            rs.Errors       = new List<WarningAndError>();
+            rs.Errors.Add(new WarningAndError { Id = id, Message = message });
+            return rs;
+        }
+
+        /*
+         * a wrapper function for convert object into json string
+         */ 
+        private string GenerateJson(object obj)
+        {
+            OutputFormatter outputManager = new OutputFormatter();
+            return outputManager.ObjectToJson(obj);
         }
     }
 }

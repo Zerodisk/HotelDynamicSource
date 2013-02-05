@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 
 using HDSInterfaces;
@@ -39,15 +38,17 @@ namespace Expedia
             }
 
             //star rating
-            if (request.SearchCriteria.MinStarRating != null)
-            {
-                rawRq.minStarRating = (float)request.SearchCriteria.MinStarRating;
-                rawRq.minStarRatingSpecified = true;
-            }
-            if (request.SearchCriteria.MaxStarRating != null)
-            {
-                rawRq.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
-                rawRq.maxStarRatingSpecified = true;
+            if (request.SearchCriteria != null){
+                if (request.SearchCriteria.MinStarRating != null)
+                {
+                    rawRq.minStarRating = (float)request.SearchCriteria.MinStarRating;
+                    rawRq.minStarRatingSpecified = true;
+                }
+                if (request.SearchCriteria.MaxStarRating != null)
+                {
+                    rawRq.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
+                    rawRq.maxStarRatingSpecified = true;
+                }
             }
 
             //stay date
@@ -73,7 +74,7 @@ namespace Expedia
 
                     break;
                 case HDSRequestType.SearchByLocationIds:
-                    rawRq.destinationId = request.SearchCriteria.Locations[0].Code;
+                    rawRq.destinationId = request.SearchCriteria.Location.Code;
                     break;
                 case HDSRequestType.SearchByLocationKeyword:
                     rawRq.destinationString = request.SearchCriteria.LocationKeyword;
