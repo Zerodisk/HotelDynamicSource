@@ -22,22 +22,22 @@ namespace Expedia
                 if ((rawRs.EanWsError.handling == errorHandling.RECOVERABLE) && (rawRs.EanWsError.category == errorCategory.DATA_VALIDATION)){
                     //warning about location
                     rs.Warnings = new List<WarningAndError>();
-                    WarningAndError warning = new WarningAndError {
-                                                                     Id                = 9002,
-                                                                     Type              = rawRs.EanWsError.category.ToString(),
-                                                                     Message           = rawRs.EanWsError.presentationMessage,
-                                                                     DetailDescription = rawRs.EanWsError.verboseMessage
-                                                                  };
+                    WarningAndError warning = new WarningAndError{
+                                                                    Id                = 9002,
+                                                                    Type              = rawRs.EanWsError.category.ToString(),
+                                                                    Message           = rawRs.EanWsError.presentationMessage,
+                                                                    DetailDescription = rawRs.EanWsError.verboseMessage
+                                                                 };
                     rs.Warnings.Add(warning);
                 }
                 else{
                     //error! something has happened
                     rs.Errors = new List<WarningAndError>();
                     WarningAndError error = new WarningAndError{
-                                                                 Id                = 9001,
-                                                                 Type              = rawRs.EanWsError.category.ToString(),
-                                                                 Message           = rawRs.EanWsError.presentationMessage,
-                                                                 DetailDescription = rawRs.EanWsError.verboseMessage
+                                                                  Id                = 9001,
+                                                                  Type              = rawRs.EanWsError.category.ToString(),
+                                                                  Message           = rawRs.EanWsError.presentationMessage,
+                                                                  DetailDescription = rawRs.EanWsError.verboseMessage
                                                                };
                     rs.Errors.Add(error);
                 }
@@ -156,13 +156,12 @@ namespace Expedia
             {
                 //error! something has happened
                 rs.Errors = new List<WarningAndError>();
-                WarningAndError error = new WarningAndError
-                {
-                    Id = 9001,
-                    Type = rawRs.EanWsError.category.ToString(),
-                    Message = rawRs.EanWsError.presentationMessage,
-                    DetailDescription = rawRs.EanWsError.verboseMessage
-                };
+                WarningAndError error = new WarningAndError{
+                                                              Id = 9001,
+                                                              Type = rawRs.EanWsError.category.ToString(),
+                                                              Message = rawRs.EanWsError.presentationMessage,
+                                                              DetailDescription = rawRs.EanWsError.verboseMessage
+                                                           };
                 rs.Errors.Add(error);
             }
             else

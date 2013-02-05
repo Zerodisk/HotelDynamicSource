@@ -15,6 +15,12 @@ namespace HDSWebServices
         RequestTypeNotPrepared      = 9997,
         RequestCurrencyCodeMissing  = 9996,
         RequestTypeError            = 9990
+
+
+        /*
+         * 9001 = error return from expedia
+         * 9002 = waiting return from expedia
+         */ 
     }
 
 }

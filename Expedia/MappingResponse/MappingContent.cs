@@ -15,19 +15,17 @@ namespace Expedia
         {
             HotelContentRS rs = new HotelContentRS();
 
-
             //EAN warning and error
             if (rawRs.EanWsError != null)
             {
                 //error! something has happened
                 rs.Errors = new List<WarningAndError>();
-                WarningAndError error = new WarningAndError
-                {
-                    Id = 9001,
-                    Type = rawRs.EanWsError.category.ToString(),
-                    Message = rawRs.EanWsError.presentationMessage,
-                    DetailDescription = rawRs.EanWsError.verboseMessage
-                };
+                WarningAndError error = new WarningAndError{
+                                                              Id                = 9001,
+                                                              Type              = rawRs.EanWsError.category.ToString(),
+                                                              Message           = rawRs.EanWsError.presentationMessage,
+                                                              DetailDescription = rawRs.EanWsError.verboseMessage
+                                                           };
                 rs.Errors.Add(error);
             }
             else
