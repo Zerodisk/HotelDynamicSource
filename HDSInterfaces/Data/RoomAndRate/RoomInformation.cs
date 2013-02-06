@@ -5,10 +5,11 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class RoomInformation
+    public class RoomInformation : Identification 
     {
         //bedding
         public string BeddingDescription { get; set; }
+        public string LongDescription { get; set; }
 
         //room info
         public List<Amenity> Amenities { get; set; }

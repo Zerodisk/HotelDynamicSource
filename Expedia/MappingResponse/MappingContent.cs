@@ -63,6 +63,21 @@ namespace Expedia
                                                                 };
                 }
 
+                //room info
+                hotel.HotelInfo.RoomInfos = new List<RoomInformation>();
+                if (rawRs.RoomTypes != null) {
+                    foreach (Expedia.HotelShoppingServiceReference.RoomType roomType in rawRs.RoomTypes.RoomType)
+                    {
+                        RoomInformation room = new RoomInformation{
+                                                                     Id                 = roomType.roomTypeId,
+                                                                     Code               = roomType.roomCode,
+                                                                     BeddingDescription = roomType.description,
+                                                                     LongDescription    = roomType.descriptionLong
+                                                                  };
+                        hotel.HotelInfo.RoomInfos.Add(room);
+                    }
+                }
+
                 //amenitity
                 hotel.HotelInfo.Amenities = new List<HDSInterfaces.Amenity>();
                 if (rawRs.PropertyAmenities != null){

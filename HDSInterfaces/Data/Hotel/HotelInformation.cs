@@ -35,5 +35,8 @@ namespace HDSInterfaces
 
         //images
         public List<HotelImage> Images { get; set; }
+
+        //room info
+        public List<RoomInformation> RoomInfos { get; set; }
     }
 }

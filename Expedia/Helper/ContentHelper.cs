@@ -26,7 +26,7 @@ namespace Expedia
             hotelInfoRequest = (HotelInformationRequest)commonHelper.GenerateBaseRequest(hotelInfoRequest, request);
 
             hotelInfoRequest.hotelId = (long)request.Hotels[0].Id;
-            hotelInfoRequest.options = new hotelInfoOption[4];
+            hotelInfoRequest.options = new hotelInfoOption[5];
             hotelInfoRequest.options[0] = new hotelInfoOption();
             hotelInfoRequest.options[0] = hotelInfoOption.HOTEL_DETAILS;        //hotel details
             hotelInfoRequest.options[1] = new hotelInfoOption();
@@ -35,8 +35,10 @@ namespace Expedia
             hotelInfoRequest.options[2] = hotelInfoOption.HOTEL_IMAGES;         //hotel images
             hotelInfoRequest.options[3] = new hotelInfoOption();
             hotelInfoRequest.options[3] = hotelInfoOption.HOTEL_SUMMARY;        //hotel name and address
-
-            //submit soap request to expedia
+            hotelInfoRequest.options[4] = new hotelInfoOption();
+            hotelInfoRequest.options[4] = hotelInfoOption.ROOM_TYPES;           //room info
+            
+                //submit soap request to expedia
             HotelInformationResponse hotelInfoResponse;
             try
             {
