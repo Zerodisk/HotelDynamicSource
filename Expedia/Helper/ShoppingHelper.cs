@@ -82,10 +82,31 @@ namespace Expedia
             }
 
             //submit soap request to expedia
-            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
-            HotelListResponse rawRs = serviceObjShop.getList(rawRq);
+            HotelListResponse rawRs;
+            try
+            {
+                serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+                rawRs = serviceObjShop.getList(rawRq);
+            }
+            catch (Exception e1)
+            {
+                SearchResultRS error = new SearchResultRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9003, Message = "Error return from provider", DetailDescription = e1.ToString() });
+                return error;
+            }
 
-            return objMapping.MappingSearchResult(rawRs);
+            try
+            {
+                return objMapping.MappingSearchResult(rawRs);
+            }
+            catch (Exception e2)
+            {
+                SearchResultRS error = new SearchResultRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9110, Message = "Search Result mapping exception", DetailDescription = e2.ToString() });
+                return error;
+            }
         }
 
         public HotelAvailabilityRS GetHotelAvailability(HDSRequest request)
@@ -110,10 +131,32 @@ namespace Expedia
             rawRq.includeRoomImagesSpecified = true;
 
             //submit soap request to expedia
-            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
-            HotelRoomAvailabilityResponse rawRs = serviceObjShop.getAvailability(rawRq);
+            HotelRoomAvailabilityResponse rawRs;
+            try
+            {
+                serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+                rawRs = serviceObjShop.getAvailability(rawRq);
+            }
+            catch (Exception e1)
+            {
+                HotelAvailabilityRS error = new HotelAvailabilityRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9003, Message = "Error return from provider", DetailDescription = e1.ToString() });
+                return error;
+            }
 
-            return objMapping.MappingHotelAvailability(rawRs);
+            //do hotel availability mapping
+            try
+            {
+                return objMapping.MappingHotelAvailability(rawRs);
+            }
+            catch (Exception e2)
+            {
+                HotelAvailabilityRS error = new HotelAvailabilityRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9120, Message = "Hotel Availability mapping exception", DetailDescription = e2.ToString() });
+                return error;
+            }
         }
 
 

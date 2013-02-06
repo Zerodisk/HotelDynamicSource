@@ -37,10 +37,33 @@ namespace Expedia
             hotelInfoRequest.options[3] = hotelInfoOption.HOTEL_SUMMARY;        //hotel name and address
 
             //submit soap request to expedia
-            serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
-            HotelInformationResponse hotelInfoResponse = serviceObjShop.getInformation(hotelInfoRequest);
+            HotelInformationResponse hotelInfoResponse;
+            try
+            {
+                serviceObjShop = new Expedia.HotelShoppingServiceReference.HotelServicesClient();
+                hotelInfoResponse = serviceObjShop.getInformation(hotelInfoRequest);                
+            }
+            catch (Exception e1)
+            {
+                HotelContentRS error = new HotelContentRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9003, Message = "Error return from provider", DetailDescription = e1.ToString() });
+                return error;
+            }
 
-            return objMapping.MappingHotelInfo(hotelInfoResponse);
+            //do hotel content object mapping
+            try
+            {
+                return objMapping.MappingHotelInfo(hotelInfoResponse);
+            }
+            catch(Exception e2)
+            {
+                HotelContentRS error = new HotelContentRS();
+                error.Errors = new List<WarningAndError>();
+                error.Errors.Add(new WarningAndError { Id = 9150, Message = "Hotel Conent mapping exception", DetailDescription = e2.ToString() });
+                return error;
+            }
+            
         }
 
     }
