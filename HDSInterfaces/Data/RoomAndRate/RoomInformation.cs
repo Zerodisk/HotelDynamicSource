@@ -7,9 +7,11 @@ namespace HDSInterfaces
 {
     public class RoomInformation : Identification 
     {
+        //description
+        public string Description { get; set; }        
+
         //bedding
         public string BeddingDescription { get; set; }
-        public string LongDescription { get; set; }
 
         //room info
         public List<Amenity> Amenities { get; set; }

@@ -69,10 +69,10 @@ namespace Expedia
                     foreach (Expedia.HotelShoppingServiceReference.RoomType roomType in rawRs.RoomTypes.RoomType)
                     {
                         RoomInformation room = new RoomInformation{
-                                                                     Id                 = roomType.roomTypeId,
-                                                                     Code               = roomType.roomCode,
-                                                                     BeddingDescription = roomType.description,
-                                                                     LongDescription    = roomType.descriptionLong
+                                                                     Id          = roomType.roomTypeId,
+                                                                     Code        = roomType.roomCode,
+                                                                     Name        = roomType.description,
+                                                                     Description = roomType.descriptionLong
                                                                   };
                         hotel.HotelInfo.RoomInfos.Add(room);
                     }
