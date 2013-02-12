@@ -11,6 +11,9 @@ namespace HDSInterfaces
         //provider-source indicate inventory source
         public HDSSource SourceProvider { get; set; }
 
+        public ExpediaSpecific Expedia { get; set; }
+        public OrbitzSpecific  Orbitz  { get; set; }
+
         //client and customer details
         public string SessionId { get; set; }               //24 digits session id for each customer session. format could be siteid-yyyymmddhhmm-[7digit random]
                                                             // example 101-201301171340-qlkdufp

@@ -78,9 +78,21 @@ namespace HDSWebServices
             {
                 request.SearchCriteria.MaxStarRating = float.Parse(httpRq["maxStar"]);
             }
-
+           
             //room(s) request
             request.Itineraries = helper.GenerateItineraryList(httpRq);
+
+            //expedia specific
+            if (request.Session.SourceProvider == HDSSource.Expedia)
+            {
+                if ((httpRq["cacheKey"] != null) && (httpRq["cacheLocation"] != null))
+                {
+                    request.Session.Expedia = new ExpediaSpecific { CacheKey = httpRq["cacheKey"], CacheLocation = httpRq["cacheLocation"] };
+                }
+            }
+
+            //orbitz specific 
+            //  ???
 
             return request;
         }

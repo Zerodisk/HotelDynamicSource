@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Common\ExpediaSpecific.cs" />
+    <Compile Include="Data\Common\OrbitzSpecific.cs" />
     <Compile Include="Data\Exception\WarningAndError.cs" />
     <Compile Include="Data\Location\Location.cs" />
     <Compile Include="Data\Common\StayDate.cs" />

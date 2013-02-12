@@ -29,13 +29,13 @@ namespace HDSWebServices
                 switch (rq.RequestType)
                 {
                     case HDSRequestType.SearchByLocationKeyword:
-                        json = rqManager.GetSearchResult(rq);
+                        json = rqManager.GetSearchResult(rq, Request);
                         break;
                     case HDSRequestType.SearchByLocationIds:
-                        json = rqManager.GetSearchResult(rq);
+                        json = rqManager.GetSearchResult(rq, Request);
                         break;
                     case HDSRequestType.SearchByHotelIds:
-                        json = rqManager.GetSearchResult(rq);
+                        json = rqManager.GetSearchResult(rq, Request);
                         break;
                     case HDSRequestType.SearchByHotelId:
                         json = rqManager.GetHotelAvailability(rq);

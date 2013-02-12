@@ -32,6 +32,8 @@
  * - numChild1, numChild2, ..... numChildN  = string pattern n_x_y_z, n number of children, x,y and z is age of each child (e.g. 1 child age 5 = 1_5), (e.g. 2 children with age 2 and 6 = 2_2_6)
  * - roomCode1, roomCode2, ..... roomCodeN  = room unique identification code
  * 
+ * - cacheKey           = expedia specific for pagination
+ * - cacheLocation      = expedia specific for pagination
  */
 
 using System;
@@ -149,10 +151,29 @@ namespace HDSWebServices
             return request;
         }
 
-        public string GetSearchResult(HDSRequest rq)
+        public string GetSearchResult(HDSRequest rq, HttpRequest httpRq)
         {
             HDSManager sourceManager = this.GetSourceManager();
             SearchResultRS rs = sourceManager.GetSearchResult(rq);
+
+            if (rs.IsMoreResultsAvailable != null)
+            {
+                if ((bool)rs.IsMoreResultsAvailable)
+                {
+                    //got the next result so need to prepare rs.NextPageUrl
+                    //
+                    //
+                    //
+                    //
+                    //
+
+
+
+
+                }
+            }
+
+
             return outputManager.ObjectToJson(rs);
         }
 
