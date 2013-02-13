@@ -29,9 +29,13 @@ namespace Expedia
             hotelRequest.customerSessionId = request.Session.SessionId;
             hotelRequest.customerUserAgent = request.Session.BrowserUserAgent;
 
-            hotelRequest.currencyCode = request.Session.CurrencyCode;
-            hotelRequest.locale = this.MapLocale(request.Session.Locale);
-            hotelRequest.localeSpecified = true;
+            if (request.Session.Expedia == null)
+            {
+                //only setup locale+currency if there is no cacheKey and no cacheLocation
+                hotelRequest.currencyCode = request.Session.CurrencyCode;
+                hotelRequest.locale = this.MapLocale(request.Session.Locale);
+                hotelRequest.localeSpecified = true;
+            }
 
             return hotelRequest;
         }

@@ -87,6 +87,9 @@ namespace HDSWebServices
                     request.Session.SourceProvider = this.MapProviderSource(source);
                 }
 
+                //request query string for pagination
+                request.RequestQueryString        = httpRq.QueryString.ToString();
+
                 //get customer details
                 request.Session.CustomerIpAddress = httpRq["ipAddress"];
                 request.Session.BrowserUserAgent  = httpRq["userAgent"];
@@ -151,29 +154,10 @@ namespace HDSWebServices
             return request;
         }
 
-        public string GetSearchResult(HDSRequest rq, HttpRequest httpRq)
+        public string GetSearchResult(HDSRequest rq)
         {
             HDSManager sourceManager = this.GetSourceManager();
             SearchResultRS rs = sourceManager.GetSearchResult(rq);
-
-            if (rs.IsMoreResultsAvailable != null)
-            {
-                if ((bool)rs.IsMoreResultsAvailable)
-                {
-                    //got the next result so need to prepare rs.NextPageUrl
-                    //
-                    //
-                    //
-                    //
-                    //
-
-
-
-
-                }
-            }
-
-
             return outputManager.ObjectToJson(rs);
         }
 

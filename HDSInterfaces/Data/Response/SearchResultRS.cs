@@ -8,7 +8,7 @@ namespace HDSInterfaces
     public class SearchResultRS : BaseResponse 
     {
         public bool? IsMoreResultsAvailable { get; set; }       //true if there is further result, which require next request (pagination)
-        public string NextPageUrl { get; set; }                 //only got value if IsMoreResultsAvailable = true
+        public string NextPageQueryString { get; set; }         //only got value if IsMoreResultsAvailable = true, this is the query string value use to go to the next page
                                                                 //   this is the next page URL if there is any
         public int TotalHotelReturnThisResult{                  //number of hotel return in this query/request
             get {

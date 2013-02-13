@@ -7,14 +7,14 @@ using Expedia.HotelShoppingServiceReference;
 
 namespace Expedia
 {
-    public class ContentHelper
+    public class ContentManager
     {
         //private variable
         private Expedia.HotelShoppingServiceReference.HotelServicesClient serviceObjShop;
         private CommonHelper commonHelper;
         private MappingContent objMapping;
 
-        public ContentHelper()
+        public ContentManager()
         {
             commonHelper = new CommonHelper();
             objMapping = new MappingContent();

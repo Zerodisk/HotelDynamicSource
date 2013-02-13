@@ -7,7 +7,7 @@ using Expedia.HotelShoppingServiceReference;
 
 namespace Expedia
 {
-    public class ShoppingHelper
+    public class ShoppingManager
     {
         //constant value
         private int DEFAULT_MAX_NUMBER_OF_ROOM = 1; //Defines the number of room types to return with each property.
@@ -18,7 +18,7 @@ namespace Expedia
         private MappingShopping objMapping;
 
         //constructure
-        public ShoppingHelper()
+        public ShoppingManager()
         {
             objMapping = new MappingShopping();
             commonHelper = new CommonHelper();
@@ -30,55 +30,65 @@ namespace Expedia
             HotelListRequest rawRq = new HotelListRequest();
             rawRq = (HotelListRequest)commonHelper.GenerateBaseRequest(rawRq, request);
 
-            //set max hotel return
-            if (request.Session.PageSize != null)
+            if (request.Session.Expedia != null)
             {
-                rawRq.numberOfResults = (int)request.Session.PageSize;
-                rawRq.numberOfResultsSpecified = true;
+                rawRq.cacheKey = request.Session.Expedia.CacheKey;
+                rawRq.cacheLocation = request.Session.Expedia.CacheLocation;
             }
-
-            //star rating
-            if (request.SearchCriteria != null){
-                if (request.SearchCriteria.MinStarRating != null)
-                {
-                    rawRq.minStarRating = (float)request.SearchCriteria.MinStarRating;
-                    rawRq.minStarRatingSpecified = true;
-                }
-                if (request.SearchCriteria.MaxStarRating != null)
-                {
-                    rawRq.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
-                    rawRq.maxStarRatingSpecified = true;
-                }
-            }
-
-            //stay date
-            rawRq.arrivalDate = request.StayDate.GetCheckInUSFormat();
-            rawRq.departureDate = request.StayDate.GetCheckOutUSFormat();
-
-            //room and num adults-children
-            rawRq.numberOfBedRooms = request.Itineraries.Count;
-            rawRq.maxRatePlanCount = DEFAULT_MAX_NUMBER_OF_ROOM;
-            rawRq.RoomGroup = commonHelper.GenerateRoomGroup(request.Itineraries);
-
-            //location keyword or location(s) or list of hotelid
-            switch (request.RequestType)
+            else
             {
-                case HDSRequestType.SearchByHotelIds:
-                    int index = 0;
-                    rawRq.hotelIdList = new long[request.Hotels.Count];
-                    foreach (HDSInterfaces.Hotel hotel in request.Hotels)
+
+                //set max hotel return
+                if (request.Session.PageSize != null)
+                {
+                    rawRq.numberOfResults = (int)request.Session.PageSize;
+                    rawRq.numberOfResultsSpecified = true;
+                }
+
+                //star rating
+                if (request.SearchCriteria != null)
+                {
+                    if (request.SearchCriteria.MinStarRating != null)
                     {
-                        rawRq.hotelIdList[index] = (long)hotel.Id;
-                        index = index + 1;
+                        rawRq.minStarRating = (float)request.SearchCriteria.MinStarRating;
+                        rawRq.minStarRatingSpecified = true;
                     }
+                    if (request.SearchCriteria.MaxStarRating != null)
+                    {
+                        rawRq.maxStarRating = (float)request.SearchCriteria.MaxStarRating;
+                        rawRq.maxStarRatingSpecified = true;
+                    }
+                }
 
-                    break;
-                case HDSRequestType.SearchByLocationIds:
-                    rawRq.destinationId = request.SearchCriteria.Location.Code;
-                    break;
-                case HDSRequestType.SearchByLocationKeyword:
-                    rawRq.destinationString = request.SearchCriteria.LocationKeyword;
-                    break;
+                //stay date
+                rawRq.arrivalDate = request.StayDate.GetCheckInUSFormat();
+                rawRq.departureDate = request.StayDate.GetCheckOutUSFormat();
+
+                //room and num adults-children
+                rawRq.numberOfBedRooms = request.Itineraries.Count;
+                rawRq.maxRatePlanCount = DEFAULT_MAX_NUMBER_OF_ROOM;
+                rawRq.RoomGroup = commonHelper.GenerateRoomGroup(request.Itineraries);
+
+                //location keyword or location(s) or list of hotelid
+                switch (request.RequestType)
+                {
+                    case HDSRequestType.SearchByHotelIds:
+                        int index = 0;
+                        rawRq.hotelIdList = new long[request.Hotels.Count];
+                        foreach (HDSInterfaces.Hotel hotel in request.Hotels)
+                        {
+                            rawRq.hotelIdList[index] = (long)hotel.Id;
+                            index = index + 1;
+                        }
+
+                        break;
+                    case HDSRequestType.SearchByLocationIds:
+                        rawRq.destinationId = request.SearchCriteria.Location.Code;
+                        break;
+                    case HDSRequestType.SearchByLocationKeyword:
+                        rawRq.destinationString = request.SearchCriteria.LocationKeyword;
+                        break;
+                }
             }
 
             //submit soap request to expedia
@@ -98,7 +108,7 @@ namespace Expedia
 
             try
             {
-                return objMapping.MappingSearchResult(rawRs);
+                return objMapping.MappingSearchResult(rawRs, request);
             }
             catch (Exception e2)
             {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Web;
 
 using HDSInterfaces;
 using Expedia.HotelShoppingServiceReference;
@@ -12,7 +13,7 @@ namespace Expedia
         private string IMAGE_URL_PREFIX = "http://images.travelnow.com";
         private CommonHelper helper = new CommonHelper();
 
-        public SearchResultRS MappingSearchResult(HotelListResponse rawRs)
+        public SearchResultRS MappingSearchResult(HotelListResponse rawRs, HDSRequest request)
         {
             SearchResultRS rs = new SearchResultRS();
 
@@ -46,8 +47,26 @@ namespace Expedia
             //hotels
             if (rawRs.HotelList != null)
             {
-                if (rawRs.moreResultsAvailableSpecified)
+                //pagination
+                if (rawRs.moreResultsAvailableSpecified){
                     rs.IsMoreResultsAvailable = rawRs.moreResultsAvailable;
+                    if (rawRs.moreResultsAvailable){
+                        string tempQs = request.RequestQueryString;
+
+                        if (tempQs.Contains("&cacheKey=") && request.Session.Expedia != null)         //remove old cacheKey from request query string
+                            tempQs = tempQs.Replace("&cacheKey=" + HttpUtility.UrlEncode(request.Session.Expedia.CacheKey), "");
+
+                        if (tempQs.Contains("&cacheLocation=") && request.Session.Expedia != null)    //remove old cacheLocation from request query string
+                            tempQs = tempQs.Replace("&cacheLocation=" + HttpUtility.UrlEncode(request.Session.Expedia.CacheLocation), "");
+
+                        rs.NextPageQueryString = tempQs + "&cacheKey="      + HttpUtility.UrlEncode(rawRs.cacheKey)
+                                                        + "&cacheLocation=" + HttpUtility.UrlEncode(rawRs.cacheLocation);
+
+                        //re-create new expedia session
+                        rs.Session.Expedia = new ExpediaSpecific { CacheKey = rawRs.cacheKey, CacheLocation = rawRs.cacheLocation };
+                    }
+
+                }
 
                 //popuplate each of every hotels
                 rs.Hotels = new List<HDSInterfaces.Hotel>();

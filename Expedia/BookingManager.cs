@@ -7,7 +7,7 @@ using Expedia.HotelBookingServiceReference;
 
 namespace Expedia
 {
-    public class BookingHelper
+    public class BookingManager
     {
         Expedia.HotelBookingServiceReference.HotelServicesClient serviceObjBook;
 

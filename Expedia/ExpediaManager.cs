@@ -7,9 +7,9 @@ namespace Expedia
 {
     public class ExpediaManager : HDSProviderBase 
     {
-        ContentHelper contentHelper;
-        ShoppingHelper shoppingHelper;
-        BookingHelper bookingHelper;
+        ContentManager  contentHelper;
+        ShoppingManager shoppingHelper;
+        BookingManager  bookingHelper;
 
         public ExpediaManager(){
  
@@ -17,28 +17,28 @@ namespace Expedia
 
         public override HotelContentRS GetHotelInfo(HDSRequest request)
         {
-            contentHelper = new ContentHelper();
+            contentHelper = new ContentManager();
 
             return contentHelper.GetHotelInfo(request);
         }
 
         public override SearchResultRS GetSearchResult(HDSRequest request)
         {
-            shoppingHelper = new ShoppingHelper();
+            shoppingHelper = new ShoppingManager();
 
             return shoppingHelper.GetSearchResult(request);
         }
 
         public override HotelAvailabilityRS GetHotelAvailability(HDSRequest request)
         {
-            shoppingHelper = new ShoppingHelper();
+            shoppingHelper = new ShoppingManager();
 
             return shoppingHelper.GetHotelAvailability(request);
         }
 
         public override ReservationRS MakeHotelReservation(HDSRequest request)
         {
-            bookingHelper = new BookingHelper();
+            bookingHelper = new BookingManager();
 
             return bookingHelper.MakeHotelReservation(request);
         }
