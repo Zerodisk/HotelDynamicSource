@@ -83,12 +83,9 @@ namespace HDSWebServices
             request.Itineraries = helper.GenerateItineraryList(httpRq);
 
             //expedia specific
-            if (request.Session.SourceProvider == HDSSource.Expedia)
+            if ((httpRq["cacheKey"] != null) && (httpRq["cacheLocation"] != null))
             {
-                if ((httpRq["cacheKey"] != null) && (httpRq["cacheLocation"] != null))
-                {
-                    request.Session.Expedia = new ExpediaSpecific { CacheKey = httpRq["cacheKey"], CacheLocation = httpRq["cacheLocation"] };
-                }
+                request.Session.Expedia = new ExpediaSpecific { CacheKey = httpRq["cacheKey"], CacheLocation = httpRq["cacheLocation"] };
             }
 
             //orbitz specific 

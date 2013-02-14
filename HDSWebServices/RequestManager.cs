@@ -1,39 +1,39 @@
 ﻿/*
  * REST request parameter with query string (this is case sensitive querystring name)
  * 
- * - siteId             = unique ID for client/website on HDS system
- * - crc                = the encrypted hash to validate the request
+ ** - siteId             = unique ID for client/website on HDS system
+ ** - crc                = the encrypted hash to validate the request
  * 
- * - cmdType            = type of request (e.g. 10 = SearchByLocationKeyword, 20 = SearchByHotelId)
- * - source             = provide source (e.g. 1 = expedia (default) and 2 = orbitz)
- * - ipAddress          = customer ip address
- * - userAgent          = customer browser user agent
- * - sessionId          = customer session id
+ ** - cmdType            = type of request (e.g. 10 = SearchByLocationKeyword, 20 = SearchByHotelId)
+ ** - source             = provide source (e.g. 1 = expedia (default) and 2 = orbitz)
+ ** - ipAddress          = customer ip address
+ ** - userAgent          = customer browser user agent
+ ** - sessionId          = customer session id
  * 
- * - currCode           = currency code (e.g. AUD, USD)
- * - locale             = locale (e.g. en_AU, th_TH)
+ ** - currCode           = currency code (e.g. AUD, USD)
+ ** - locale             = locale (e.g. en_AU, th_TH)
  * 
- * - checkIn            = check in date in format of yyyy-MM-dd
- * - checkOut           = check out date in format of yyyy-MM-dd
+ ** - checkIn            = check in date in format of yyyy-MM-dd
+ ** - checkOut           = check out date in format of yyyy-MM-dd
  * 
- * - pageIndex          = page index of search result (start with 1)
- * - pageSize           = page size of search result (max hotel result display per page)
- * - locationKeyword    = location keyword
- * - locationId         = location id
- * - minStar            = minimum hotel star rating
- * - maxStar            = maximum hotel star rating
+ ** - pageIndex          = page index of search result (start with 1)
+ ** - pageSize           = page size of search result (max hotel result display per page)
+ ** - locationKeyword    = location keyword
+ ** - locationId         = location id
+ ** - minStar            = minimum hotel star rating
+ ** - maxStar            = maximum hotel star rating
  * 
- * - contentRequested   = request for content, true/false
- * - hotelId            = a single hotelID
- * - hotelIds           = multiple hotelID separate by comma (may use in seach by hotel name and get list of hotel Id)
+ ** - contentRequested   = request for content, true/false
+ ** - hotelId            = a single hotelID
+ ** - hotelIds           = multiple hotelID separate by comma (may use in seach by hotel name and get list of hotel Id)
  * 
- * - numRoom            = number of room
- * - numAdult1, numAdult2, ..... numAdultN  = number of adult for muliple room
- * - numChild1, numChild2, ..... numChildN  = string pattern n_x_y_z, n number of children, x,y and z is age of each child (e.g. 1 child age 5 = 1_5), (e.g. 2 children with age 2 and 6 = 2_2_6)
+ ** - numRoom            = number of room
+ ** - numAdult1, numAdult2, ..... numAdultN  = number of adult for muliple room
+ ** - numChild1, numChild2, ..... numChildN  = string pattern n_x_y_z, n number of children, x,y and z is age of each child (e.g. 1 child age 5 = 1_5), (e.g. 2 children with age 2 and 6 = 2_2_6)
  * - roomCode1, roomCode2, ..... roomCodeN  = room unique identification code
  * 
- * - cacheKey           = expedia specific for pagination
- * - cacheLocation      = expedia specific for pagination
+ ** - cacheKey           = expedia specific for pagination
+ ** - cacheLocation      = expedia specific for pagination
  */
 
 using System;
