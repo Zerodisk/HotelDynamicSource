@@ -166,10 +166,13 @@ namespace HDSWebServices
             HDSManager sourceManager = this.GetSourceManager();
             HotelAvailabilityRS rs = sourceManager.GetHotelAvailability(rq);
 
-            if (rq.IsContentRequested)
+            if (rs.Hotel != null)   //make sure hotel get availability, otherwise will not get content
             {
-                HotelContentRS rsContent = sourceManager.GetHotelInfo(rq);
-                rs.Hotel.HotelInfo = rsContent.Hotels[0].HotelInfo;
+                if (rq.IsContentRequested)
+                {
+                    HotelContentRS rsContent = sourceManager.GetHotelInfo(rq);
+                    rs.Hotel.HotelInfo = rsContent.Hotels[0].HotelInfo;
+                }
             }
 
             return outputManager.ObjectToJson(rs);
