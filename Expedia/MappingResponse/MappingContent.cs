@@ -66,34 +66,37 @@ namespace Expedia
                 //room info
                 hotel.HotelInfo.RoomInfos = new List<RoomInformation>();
                 if (rawRs.RoomTypes != null) {
-                    foreach (Expedia.HotelShoppingServiceReference.RoomType roomType in rawRs.RoomTypes.RoomType)
-                    {
-                        RoomInformation room = new RoomInformation{
-                                                                     Id          = roomType.roomTypeId,
-                                                                     Code        = roomType.roomCode,
-                                                                     Name        = roomType.description,
-                                                                     Description = roomType.descriptionLong
-                                                                  };
-                        hotel.HotelInfo.RoomInfos.Add(room);
+                    if (rawRs.RoomTypes.size > 0){
+                        foreach (Expedia.HotelShoppingServiceReference.RoomType roomType in rawRs.RoomTypes.RoomType){
+                            RoomInformation room = new RoomInformation{
+                                                                         Id = roomType.roomTypeId,
+                                                                         Code = roomType.roomCode,
+                                                                         Name = roomType.description,
+                                                                         Description = roomType.descriptionLong
+                                                                      };
+                            hotel.HotelInfo.RoomInfos.Add(room);
+                        }
                     }
                 }
 
                 //amenitity
                 hotel.HotelInfo.Amenities = new List<HDSInterfaces.Amenity>();
                 if (rawRs.PropertyAmenities != null){
-                    foreach (PropertyAmenity rawAmenitity in rawRs.PropertyAmenities.PropertyAmenity)
-                    {
-                        HDSInterfaces.Amenity amenity = new Amenity { Id = rawAmenitity.amenityId, Description = rawAmenitity.amenity.Trim() };
-                        hotel.HotelInfo.Amenities.Add(amenity);
+                    if (rawRs.PropertyAmenities.size > 0){
+                        foreach (PropertyAmenity rawAmenitity in rawRs.PropertyAmenities.PropertyAmenity){
+                            HDSInterfaces.Amenity amenity = new Amenity { Id = rawAmenitity.amenityId, Description = rawAmenitity.amenity.Trim() };
+                            hotel.HotelInfo.Amenities.Add(amenity);
+                        }
                     }
                 }
 
                 //images
                 hotel.HotelInfo.Images = new List<HDSInterfaces.HotelImage>();
                 if (rawRs.HotelImages != null){
-                    foreach (Expedia.HotelShoppingServiceReference.HotelImage rawImage in rawRs.HotelImages.HotelImage)
-                    {                   
-                        hotel.HotelInfo.Images.Add(helper.GenerateHotelImage(rawImage));
+                    if (rawRs.HotelImages.size > 0){
+                        foreach (Expedia.HotelShoppingServiceReference.HotelImage rawImage in rawRs.HotelImages.HotelImage){
+                            hotel.HotelInfo.Images.Add(helper.GenerateHotelImage(rawImage));
+                        }
                     }
                 }
 
