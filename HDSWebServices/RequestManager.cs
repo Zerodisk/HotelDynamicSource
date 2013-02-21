@@ -20,6 +20,8 @@
  ** - pageSize           = page size of search result (max hotel result display per page)
  ** - locationKeyword    = location keyword
  ** - locationId         = location id
+ ** - hotelNameKeyword   = additional filter by hotel name keyword
+ ** - amenities          = list of amenities separate by comma
  ** - minStar            = minimum hotel star rating
  ** - maxStar            = maximum hotel star rating
  * 
@@ -116,14 +118,17 @@ namespace HDSWebServices
                     //serach result -----------------------------------
                     case HDSRequestType.SearchByLocationKeyword:
                         mappingSearch = new SearchResult();
+                        request.SearchCriteria = new SearchCriteria();
                         request = mappingSearch.MapSearchByLocationKeyword(request, httpRq);
                         break;
                     case HDSRequestType.SearchByLocationIds:
                         mappingSearch = new SearchResult();
+                        request.SearchCriteria = new SearchCriteria();
                         request = mappingSearch.MapSearchByLocationId(request, httpRq);
                         break;
                     case HDSRequestType.SearchByHotelIds:
                         mappingSearch = new SearchResult();
+                        request.SearchCriteria = new SearchCriteria();
                         request = mappingSearch.MapSearchByHotelIds(request, httpRq);
                         break;
 

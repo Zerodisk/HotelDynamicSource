@@ -15,8 +15,7 @@ namespace HDSWebServices
         {
             request = this.MapGeneral(request, httpRq);
 
-            request.SearchCriteria = new SearchCriteria();
-            request.SearchCriteria.LocationKeyword = httpRq["locationKeyword"];
+            request.SearchCriteria.LocationKeyword  = httpRq["locationKeyword"];
 
             return request;
         }
@@ -26,7 +25,6 @@ namespace HDSWebServices
         {
             request = this.MapGeneral(request, httpRq);
 
-            request.SearchCriteria = new SearchCriteria();
             request.SearchCriteria.Location = new Location { Code = httpRq["locationId"] };
 
             return request;
@@ -81,6 +79,18 @@ namespace HDSWebServices
            
             //room(s) request
             request.Itineraries = helper.GenerateItineraryList(httpRq);
+
+            //addition filter for hotel name keyword
+            request.SearchCriteria.HotelNameKeyword = httpRq["hotelNameKeyword"];
+
+            //addition filter for amenities
+            if (httpRq["amenities"] != null)
+            {
+                request.SearchCriteria.Amenities = new List<Amenity>();
+                foreach (string amenityId in httpRq["amenities"].Split(',')){
+                    request.SearchCriteria.Amenities.Add(new Amenity { Code = amenityId });
+                }
+            }
 
             //expedia specific
             if ((httpRq["cacheKey"] != null) && (httpRq["cacheLocation"] != null))

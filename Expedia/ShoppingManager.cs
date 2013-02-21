@@ -84,10 +84,29 @@ namespace Expedia
                         break;
                     case HDSRequestType.SearchByLocationIds:
                         rawRq.destinationId = request.SearchCriteria.Location.Code;
+
                         break;
                     case HDSRequestType.SearchByLocationKeyword:
                         rawRq.destinationString = request.SearchCriteria.LocationKeyword;
+
                         break;
+                }
+
+                //addition filter - by hotel name keyword
+                if (request.SearchCriteria.HotelNameKeyword != null){
+                    rawRq.propertyName = request.SearchCriteria.HotelNameKeyword;
+                }
+
+                //addition filter - by amenities
+                if (request.SearchCriteria.Amenities != null) {
+                    if (request.SearchCriteria.Amenities.Count > 0) {
+                        int index = 0;
+                        rawRq.amenities = new int[request.SearchCriteria.Amenities.Count];
+                        foreach (HDSInterfaces.Amenity amenity in request.SearchCriteria.Amenities) {
+                            rawRq.amenities[index] = int.Parse(amenity.Code);
+                            index = index + 1;
+                        }
+                    }
                 }
             }
 
