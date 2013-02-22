@@ -108,6 +108,47 @@ namespace Expedia
                         }
                     }
                 }
+
+                //additon filter - by property type (e.g. hotel, motel, apartment)
+                if (request.SearchCriteria.PropertyTypes != null)
+                {
+                    if (request.SearchCriteria.PropertyTypes.Count > 0)
+                    {
+                        int index = 0;
+                        rawRq.propertyCategory = new PropertyCategory[request.SearchCriteria.PropertyTypes.Count];
+                        foreach (HDSInterfaces.PropertyType propertyType in request.SearchCriteria.PropertyTypes)
+                        {
+                            PropertyCategory pc = PropertyCategory.Item0;
+                            switch (propertyType.Code.Trim())
+                            {
+                                case "1":
+                                    pc = PropertyCategory.Item1;
+                                    break;
+                                case "2":
+                                    pc = PropertyCategory.Item2;
+                                    break;
+                                case "3":
+                                    pc = PropertyCategory.Item3;
+                                    break;
+                                case "4":
+                                    pc = PropertyCategory.Item4;
+                                    break;
+                                case "5":
+                                    pc = PropertyCategory.Item5;
+                                    break;
+                                case "6":
+                                    pc = PropertyCategory.Item6;
+                                    break;
+                            }
+                            rawRq.propertyCategory[index] = pc;
+                            index = index + 1;
+                        }
+                    }
+                }
+
+
+
+
             }
 
             //submit soap request to expedia

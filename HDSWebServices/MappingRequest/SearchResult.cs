@@ -92,6 +92,15 @@ namespace HDSWebServices
                 }
             }
 
+            //additon filter for property type
+            if (httpRq["propertyTypes"] != null)
+            {
+                request.SearchCriteria.PropertyTypes = new List<PropertyType>();
+                foreach (string propertyTypeId in httpRq["propertyTypes"].Split(',')){
+                    request.SearchCriteria.PropertyTypes.Add(new PropertyType { Code = propertyTypeId });
+                }
+            }
+
             //expedia specific
             if ((httpRq["cacheKey"] != null) && (httpRq["cacheLocation"] != null))
             {

@@ -16,8 +16,8 @@ namespace HDSInterfaces
         public float? MinStarRating { get; set; }
         public float? MaxStarRating { get; set; }
 
-        public List<Amenity> Amenities { get; set; }        //additional filter by list of amenities
-
+        public List<Amenity> Amenities { get; set; }            //additional filter by list of amenities
+        public List<PropertyType> PropertyTypes { get; set; }   //additional filter by list of property type
      
     }
 }

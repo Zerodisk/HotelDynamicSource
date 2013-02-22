@@ -22,6 +22,7 @@
  ** - locationId         = location id
  ** - hotelNameKeyword   = additional filter by hotel name keyword
  ** - amenities          = list of amenities separate by comma
+ ** - propertyTypes      = list of property types separate by comma
  ** - minStar            = minimum hotel star rating
  ** - maxStar            = maximum hotel star rating
  * 
