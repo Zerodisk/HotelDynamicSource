@@ -92,12 +92,12 @@ namespace Expedia
                         break;
                 }
 
-                //addition filter - by hotel name keyword
+                //addition filter - by hotel name keyword ( **** NOTE: this is excluded to search by list of hotel ID as expedia will ignore this on this search type ***** )
                 if (request.SearchCriteria.HotelNameKeyword != null){
                     rawRq.propertyName = request.SearchCriteria.HotelNameKeyword;
                 }
 
-                //addition filter - by amenities
+                //addition filter - by amenities (NOTE: tested and it's working with search by location keyword, location id and list of hotel id)
                 if (request.SearchCriteria.Amenities != null) {
                     if (request.SearchCriteria.Amenities.Count > 0) {
                         int index = 0;
