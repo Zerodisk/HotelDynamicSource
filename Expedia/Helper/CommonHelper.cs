@@ -128,6 +128,16 @@ namespace Expedia
             return roomRate;
         }
 
+        public WarningAndError GenerateWarningAndError(int errorCode, EanWsError rawError)
+        {
+            return new WarningAndError
+            {
+                Id                = errorCode,
+                Type              = rawError.category.ToString(),
+                Message           = rawError.presentationMessage,
+                DetailDescription = rawError.verboseMessage
+            };
+        }
 
 
         /*
