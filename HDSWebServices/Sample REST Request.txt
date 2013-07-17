@@ -1,4 +1,6 @@
-﻿Content
+﻿domain: http://app-hoteldynamicsource.azurewebsites.net
+
+Content
 	getdata.aspx?cmdType=50&source=1&hotelID=115094&locale=ja_JP&ipAddress=203.1.2.3&sessionId=test_session_id&userAgent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.1%20(KHTML%2C%20like%20Gecko)%20Chrome%2F22.0.1207.1%20Safari%2F537.1
 
 Hotel Availiability without extra content
