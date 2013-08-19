@@ -69,15 +69,16 @@ namespace Expedia
 
         public HDSInterfaces.Address GenerateHotelAddress(HotelSummary rawHotel)
         {
-            Address address = new Address{
-                                            Street1             = rawHotel.address1,
-                                            Street2             = rawHotel.address2,
-                                            City                = new City { Name = rawHotel.city },
-                                            State               = rawHotel.stateProvinceCode,
-                                            Postcode            = rawHotel.postalCode,
-                                            Country             = new Country { Code = rawHotel.countryCode },
-                                            LocationDescription = rawHotel.locationDescription
-                                         };
+            Address address = new Address
+            {
+                Street1 = rawHotel.address1,
+                Street2 = rawHotel.address2,
+                City = new City { Name = rawHotel.city },
+                State = new State { Name = rawHotel.stateProvinceCode  },
+                Postcode = rawHotel.postalCode,
+                Country = new Country { Code = rawHotel.countryCode },
+                LocationDescription = rawHotel.locationDescription
+            };
 
             if (rawHotel.latitudeSpecified) { address.Latitude = rawHotel.latitude; }
             if (rawHotel.longitudeSpecified) { address.Longtitude = rawHotel.longitude; }

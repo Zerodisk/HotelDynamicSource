@@ -30,11 +30,11 @@ namespace Expedia
 
                 HDSInterfaces.Hotel hotel = new HDSInterfaces.Hotel();
                 hotel.HotelInfo = new HotelInformation();
-                hotel.Id = rawRs.hotelId;
+                hotel.HotelInfo.Id = rawRs.hotelId;
 
                 //name and address
                 if (rawRs.HotelSummary != null){
-                    hotel.Name = rawRs.HotelSummary.name;
+                    hotel.HotelInfo.Name = rawRs.HotelSummary.name;
                     hotel.HotelInfo.Address = helper.GenerateHotelAddress(rawRs.HotelSummary);
 
                     //rating

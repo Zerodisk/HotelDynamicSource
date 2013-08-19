@@ -65,15 +65,16 @@ namespace Expedia
                     bool isHotelWithRate = false;
 
                     HDSInterfaces.Hotel hotel = new HDSInterfaces.Hotel();
-                    hotel.Id = rawHotel.hotelId;
-                    hotel.Name = rawHotel.name;
-
+ 
                     /* ****************** for testing ****************** */
                     //if (hotel.Id == 356393) { string breakkkkkkk = ""; }
                     /* ****************** for testing ****************** */
 
                     //address and location
                     hotel.HotelInfo = new HotelInformation();
+                    hotel.HotelInfo.Id = rawHotel.hotelId;
+                    hotel.HotelInfo.Name = rawHotel.name;
+
                     hotel.HotelInfo.Address = helper.GenerateHotelAddress(rawHotel);                   
 
                     //star rating
@@ -138,15 +139,17 @@ namespace Expedia
                 rs.Locations = new List<Location>();
                 foreach (LocationInfo rawLocation in rawRs.LocationInfos.LocationInfo) {
                     if (rawLocation.active){
-                        Location location = new Location{
-                                                            Code = rawLocation.destinationId,
-                                                            Name = rawLocation.code,
-                                                            Address = new Address{
-                                                                                    State   = rawLocation.stateProvinceCode,
-                                                                                    City    = new City { Name = rawLocation.city },
-                                                                                    Country = new Country { Name = rawLocation.countryName, Code = rawLocation.countryCode },
-                                                                                 }
-                                                        };
+                        Location location = new Location
+                        {
+                            Code = rawLocation.destinationId,
+                            Name = rawLocation.code,
+                            Address = new Address
+                            {
+                                State = new State { Name = rawLocation.stateProvinceCode },
+                                City = new City { Name = rawLocation.city },
+                                Country = new Country { Name = rawLocation.countryName, Code = rawLocation.countryCode },
+                            }
+                        };
                         rs.Locations.Add(location);
                     }
                 }
@@ -173,11 +176,11 @@ namespace Expedia
 
                 //init hotel
                 rs.Hotel = new HDSInterfaces.Hotel();
-                rs.Hotel.Id = rawRs.hotelId;
-                rs.Hotel.Name = rawRs.hotelName;
 
                 //hotel address info
                 rs.Hotel.HotelInfo = new HotelInformation();
+                rs.Hotel.HotelInfo.Id = rawRs.hotelId;
+                rs.Hotel.HotelInfo.Name = rawRs.hotelName;
                 rs.Hotel.HotelInfo.Address = new Address();
                 rs.Hotel.HotelInfo.Address.Street1 = rawRs.hotelAddress;
                 rs.Hotel.HotelInfo.Address.City = new City { Name = rawRs.hotelCity };

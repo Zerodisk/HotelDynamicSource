@@ -5,7 +5,7 @@ using System.Text;
 
 namespace HDSInterfaces
 {
-    public class HotelInformation
+    public class HotelInformation : Identification
     {
         //general things
         public float? StarRating { get; set; }

@@ -4,13 +4,13 @@ Content
 	getdata.aspx?cmdType=50&source=1&hotelID=115094&locale=ja_JP&ipAddress=203.1.2.3&sessionId=test_session_id&userAgent=Mozilla%2F5.0%20(Windows%20NT%206.1%3B%20WOW64)%20AppleWebKit%2F537.1%20(KHTML%2C%20like%20Gecko)%20Chrome%2F22.0.1207.1%20Safari%2F537.1
 
 Hotel Availiability without extra content
-	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2
+	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-09-21&checkOut=2013-09-25&currCode=AUD&numRoom=1&numAdult=2
 Hotel Availiability with extra content
-	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&contentRequested=true
+	getdata.aspx?cmdType=20&source=1&hotelID=115094&checkIn=2013-09-21&checkOut=2013-09-25&currCode=AUD&numRoom=1&numAdult=2&contentRequested=true
 
 
 Search result by location keyword
-	getdata.aspx?cmdType=10&source=1&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&locationKeyword=Osaka
+	getdata.aspx?cmdType=10&source=1&checkIn=2013-09-21&checkOut=2013-09-25&currCode=AUD&numRoom=1&numAdult=2&locationKeyword=Osaka
 Search result by location id
 	getdata.aspx?cmdType=11&source=1&checkIn=2013-03-21&checkOut=2013-03-25&currCode=AUD&numRoom=1&numAdult=2&locationId=D06C6F8B-29A9-4475-8446-E2EA600FD97C
 Search result by list of hotel id
