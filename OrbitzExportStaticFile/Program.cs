@@ -14,6 +14,8 @@ namespace OrbitzExportStaticFile
     {
         static void Main(string[] args)
         {
+            OutputFormatter output = new OutputFormatter();
+
             HotelInformation hotelInfo = new HotelInformation();
             hotelInfo.Amenities = new List<Amenity>();
 
@@ -41,7 +43,10 @@ namespace OrbitzExportStaticFile
             hotelInfo.RoomInfos.Add(new RoomInfo { Name = "test 2" });
             hotelInfo.RoomInfos.Add(new RoomInfo { Name = "test 3" });
 
-            Console.Write(SerializeObjectToXML(hotelInfo));
+            Hotel hotel = new Hotel();
+            hotel.HotelInfo = hotelInfo;
+
+            Console.Write(output.ObjectToJson(hotel));
             Console.ReadLine();
 
 
