@@ -59,11 +59,11 @@ namespace Expedia
                 }
 
                 //room info
-                hotel.HotelInfo.RoomInfos = new List<RoomInformation>();
+                hotel.HotelInfo.RoomInfos = new List<RoomInfo>();
                 if (rawRs.RoomTypes != null) {
                     if (rawRs.RoomTypes.size > 0){
                         foreach (Expedia.HotelShoppingServiceReference.RoomType roomType in rawRs.RoomTypes.RoomType){
-                            RoomInformation room = new RoomInformation{
+                            RoomInfo room = new RoomInfo{
                                                                          Id = roomType.roomTypeId,
                                                                          Code = roomType.roomCode,
                                                                          Name = roomType.description,

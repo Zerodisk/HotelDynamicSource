@@ -199,7 +199,7 @@ namespace Expedia
                     //room info
                     room.Name = rawRoom.rateDescription;
                     room.Description = rawRoom.rateDescription;
-                    room.RoomInfo = new RoomInformation();
+                    room.RoomInfo = new RoomInfo();
 
                     //room promotion
                     if (rawRoom.promoDescription != null){

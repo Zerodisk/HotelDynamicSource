@@ -30,13 +30,23 @@ namespace HDSInterfaces
 
         //amenties-facilities
         public List<Amenity> Amenities { get; set; }
-        //public List<Amenity> Facilities { get; set; }
+        public List<Facility> Facilities { get; set; }
         //public List<Amenity> RoomAmenities { get; set; }
 
         //images
         public List<HotelImage> Images { get; set; }
 
         //room info
-        public List<RoomInformation> RoomInfos { get; set; }
+        public List<RoomInfo> RoomInfos { get; set; }
+
+        //guet review and score
+        public GuestReview GuestReview { get; set; }
+
+
+        //for xml serialization things
+        //[System.Xml.Serialization.XmlIgnore]
+        //public bool StarRatingSpecified { get { return this.StarRating != null; } }
+        //[System.Xml.Serialization.XmlIgnore]
+        //public bool TripAdvisorRatingSpecified { get { return this.TripAdvisorRating != null; } }
     }
 }

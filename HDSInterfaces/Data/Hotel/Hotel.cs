@@ -7,7 +7,8 @@ namespace HDSInterfaces
 {
     public class Hotel
     {
-        public long? Id { get; set; }
+        //hotel identifier (use Id here only for request, not in response) Hotel ID in response is in HotelInfo.Id
+        public long? Id { get; set; }        
 
         //hotel information
         public HotelInformation HotelInfo { get; set; }
@@ -15,25 +16,11 @@ namespace HDSInterfaces
         //rooms information and rates
         public List<Room> Rooms { get; set; }
 
-        /*
-        public long? Id
-        {
-            get
-            {
-                if (HotelInfo == null)
-                    return null;
-                else
-                    return HotelInfo.Id;
-            }
 
-            set
-            {
-                if (HotelInfo == null)
-                    HotelInfo = new HotelInformation();
 
-                HotelInfo.Id = value;
-            }
-        }
-        */
+        //for xml serialization things
+        //[System.Xml.Serialization.XmlIgnore]
+        //public bool IdSpecified { get { return this.Id != null; } }
+
     }
 }

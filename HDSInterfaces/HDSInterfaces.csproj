@@ -49,8 +49,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\Common\ExpediaSpecific.cs" />
+    <Compile Include="Data\Common\Facility.cs" />
     <Compile Include="Data\Common\OrbitzSpecific.cs" />
     <Compile Include="Data\Common\PropertyType.cs" />
+    <Compile Include="Data\Customer\GuestReview.cs" />
     <Compile Include="Data\Exception\WarningAndError.cs" />
     <Compile Include="Data\Location\Location.cs" />
     <Compile Include="Data\Common\StayDate.cs" />
@@ -81,7 +83,7 @@
     <Compile Include="Data\RoomAndRate\Itinerary.cs" />
     <Compile Include="Data\RoomAndRate\Room.cs" />
     <Compile Include="Data\RoomAndRate\RoomImage.cs" />
-    <Compile Include="Data\RoomAndRate\RoomInformation.cs" />
+    <Compile Include="Data\RoomAndRate\RoomInfo.cs" />
     <Compile Include="Data\RoomAndRate\RoomRate.cs" />
     <Compile Include="Data\Common\Session.cs" />
     <Compile Include="Data\RoomAndRate\RoomValueAdd.cs" />

@@ -8,7 +8,7 @@ namespace HDSInterfaces
     public class Room : BaseItinerary 
     {
         //room information
-        public RoomInformation RoomInfo { get; set; }
+        public RoomInfo RoomInfo { get; set; }
 
         //availability rate and cancellation policy
         public int? NumberOfRoomAvailable { get; set; }

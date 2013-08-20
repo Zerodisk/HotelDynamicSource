@@ -10,5 +10,9 @@ namespace HDSInterfaces
         public long? Id { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
+
+        //for xml serialization things
+        //[System.Xml.Serialization.XmlIgnore]
+        //public bool IdSpecified { get { return this.Id != null; } }
     }
 }
