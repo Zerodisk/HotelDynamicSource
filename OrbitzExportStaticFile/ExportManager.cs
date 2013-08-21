@@ -202,7 +202,7 @@ namespace OrbitzExportStaticFile
                             {
                                 if (facilityNode.ChildNodes[i].Name == "type")
                                 {
-                                    facility.Type = facilityNode.ChildNodes[i].InnerText;
+                                    facility.Code = facilityNode.ChildNodes[i].InnerText;
                                 }
 
                                 if (facilityNode.ChildNodes[i].Name == "desc")
