@@ -11,6 +11,7 @@ namespace OrbitzExportStaticFile
     {
         static void Main(string[] args)
         {
+            /*
             OutputFormatter output = new OutputFormatter();
 
             HotelInformation hotelInfo = new HotelInformation();
@@ -48,9 +49,11 @@ namespace OrbitzExportStaticFile
             Console.Write(jsonString);
             //to file
             output.WriteToFile(jsonString, "c:\\temp\\1.json");
+            */
 
-
-
+            Console.WriteLine("Starting app");
+            ExportManager manager = new ExportManager();
+            manager.DoStart();
             Console.ReadLine();
 
 
