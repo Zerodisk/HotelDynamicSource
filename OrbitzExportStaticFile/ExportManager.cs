@@ -127,7 +127,7 @@ namespace OrbitzExportStaticFile
                     }
 
                     if (node.Name == "airportsDesc"){
-                        result.HotelInfo.Address.LocationDescription = "Airport Description: " + node.InnerText;
+                        result.HotelInfo.AreaInfo = "Airport Description: " + node.InnerText;
                     }
 
                     if (node.Name == "description"){
@@ -160,7 +160,7 @@ namespace OrbitzExportStaticFile
                                 }
                                 else
                                 {
-                                    Console.WriteLine("Amenity code NOT found: " + amenity.Code);
+                                    Console.WriteLine("  *** Amenity code NOT found: '" + amenity.Code + "'   ***");
                                 }
                             }
 
