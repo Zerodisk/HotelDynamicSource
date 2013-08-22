@@ -55,7 +55,7 @@ namespace OrbitzExportStaticFile
             ExportManager manager = new ExportManager();
             manager.DoStart();
             Console.ReadLine();
-
+            Console.WriteLine("\n\nFinishing app... press enter to exit program..");
 
         }
 

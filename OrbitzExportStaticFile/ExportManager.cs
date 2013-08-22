@@ -42,7 +42,7 @@ namespace OrbitzExportStaticFile
                     {
                         string jsonString = outputFormat.ObjectToJson(hotel);
                         long hotelId = (long)hotel.HotelInfo.Id;
-                        string outputFile = this.getFullPathFileName(hotelId);
+                        string outputFile = this.getFullPathFileName(hotelId, "json");
 
                         if (outputFormat.WriteToFile(jsonString, outputFile)) {
                             Console.WriteLine("  Write file: Success - " + outputFile);
@@ -50,6 +50,51 @@ namespace OrbitzExportStaticFile
                         else{
                             Console.WriteLine("  Write file: Failed");
                         }                        
+                    }
+
+                    Console.WriteLine("Finishing hotel# " + count.ToString());
+                    Console.WriteLine("");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
+        //split orbitz hotel static file into a hotel per file.
+        public void DoStart2()
+        {
+            string xmlFile = config.InputXmlFile;
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFile);
+                int indexHotels = 0;
+                //finding hotels node
+                for (int i = 0; i <= xmlDoc.ChildNodes.Count - 1; i++){
+                    if (xmlDoc.ChildNodes.Item(i).Name == "hotels"){
+                        indexHotels = i;
+                        break;
+                    }
+                }
+
+                int count = 0;
+                foreach (XmlNode hotelNode in xmlDoc.ChildNodes.Item(indexHotels).ChildNodes){
+
+                    count = count + 1;
+                    Console.WriteLine("Read and process hotel# " + count.ToString());
+
+                    string xmlString = hotelNode.OuterXml;
+                    long hotelId = long.Parse(hotelNode.FirstChild.InnerText);
+                    string outputFile = this.getFullPathFileName(hotelId, "xml");
+                    if (outputFormat.WriteToFile(xmlString, outputFile))
+                    {
+                        Console.WriteLine("  Write file: Success - " + outputFile);
+                    }
+                    else
+                    {
+                        Console.WriteLine("  Write file: Failed");
                     }
 
                     Console.WriteLine("Finishing hotel# " + count.ToString());
@@ -253,9 +298,9 @@ namespace OrbitzExportStaticFile
             }            
         }
 
-        private string getFullPathFileName(long hotelId)
+        private string getFullPathFileName(long hotelId, string extension)
         {
-            return config.OutputJsonFolder + "\\" + config.LanguageCode + "_" + hotelId.ToString() + ".json";
+            return config.OutputJsonFolder + "\\" + config.LanguageCode + "_" + hotelId.ToString() + "." + extension;
         }
     }
 }
