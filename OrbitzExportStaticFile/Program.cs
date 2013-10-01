@@ -55,10 +55,13 @@ namespace OrbitzExportStaticFile
             ExportManager manager = new ExportManager();
 
             //json
-            manager.DoStart();
+            //manager.DoStart();
 
             //xml
             //manager.DoStart2();
+
+            //special case for aileen
+            manager.DoStart3();
 
             Console.ReadLine();
             Console.WriteLine("\n\nFinishing app... press enter to exit program..");

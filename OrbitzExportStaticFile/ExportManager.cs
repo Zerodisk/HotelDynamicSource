@@ -107,6 +107,80 @@ namespace OrbitzExportStaticFile
             }
         }
 
+        //
+        //
+        public void DoStart3()
+        {
+            string xmlFile = config.InputXmlFile;
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load(xmlFile);
+                int indexHotels = 0;
+                //finding hotels node
+                for (int i = 0; i <= xmlDoc.ChildNodes.Count - 1; i++)
+                {
+                    if (xmlDoc.ChildNodes.Item(i).Name == "hotels")
+                    {
+                        indexHotels = i;
+                        break;
+                    }
+                }
+
+                int count = 0;
+                foreach (XmlNode hotelNode in xmlDoc.ChildNodes.Item(indexHotels).ChildNodes)
+                {
+                    count = count + 1;
+                    //Console.WriteLine("Read and process hotel# " + count.ToString());
+                    Hotel hotel = processOneHotel(hotelNode);
+
+                    if (hotel != null)
+                    {
+                        if (hotel.HotelInfo.Address.State != null)
+                        {
+                            if ((hotel.HotelInfo.Address.State.Code == "HI") && (hotel.HotelInfo.Address.State.Name == "Hawaii"))
+                            {
+                                string temp = "";
+                                temp = temp + hotel.HotelInfo.Id.ToString();
+                                temp = temp + "|" + hotel.HotelInfo.Name;
+                                temp = temp + "|" + hotel.HotelInfo.Address.City.Name;
+                                temp = temp + "|" + hotel.HotelInfo.Address.Street1;
+                                if (hotel.HotelInfo.Address.Street2 == null)
+                                {
+                                    temp = temp + "|";
+                                }
+                                else
+                                {
+                                    temp = temp + "|" + hotel.HotelInfo.Address.Street2;
+                                }
+                                
+                                temp = temp + "|" + hotel.HotelInfo.Address.State.Code;
+                                temp = temp + "|" + hotel.HotelInfo.Address.State.Name;
+
+                                if (hotel.HotelInfo.Address.Postcode == null)
+                                {
+                                    temp = temp + "|";
+                                }   
+                                else
+                                {
+                                    temp = temp + "|" + hotel.HotelInfo.Address.Postcode;
+                                }
+
+                                Console.WriteLine(temp);
+                            }
+                        }
+                    }
+
+                    //Console.WriteLine("Finishing hotel# " + count.ToString());
+                    //Console.WriteLine("");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+        }
+
 
         private Hotel processOneHotel(XmlNode hotelNode)
         {
@@ -126,7 +200,7 @@ namespace OrbitzExportStaticFile
                     if (node.Name == "name") {
                         result.HotelInfo.Name = node.InnerText;
 
-                        Console.WriteLine("  Hotel Id: " + result.HotelInfo.Id + ", Name: " + result.HotelInfo.Name);
+                        //Console.WriteLine("  Hotel Id: " + result.HotelInfo.Id + ", Name: " + result.HotelInfo.Name);
                     }
 
                     
@@ -157,7 +231,7 @@ namespace OrbitzExportStaticFile
                                 result.HotelInfo.Address.Postcode = item.InnerText;
                             }
                         }
-                        Console.WriteLine("  Address is processed");
+                        //Console.WriteLine("  Address is processed");
                     }
 
                     if (node.Name == "latitude"){
@@ -205,13 +279,13 @@ namespace OrbitzExportStaticFile
                                 }
                                 else
                                 {
-                                    Console.WriteLine("  *** Amenity code NOT found: '" + amenity.Code + "'   ***");
+                                    //Console.WriteLine("  *** Amenity code NOT found: '" + amenity.Code + "'   ***");
                                 }
                             }
 
                         }
 
-                        Console.WriteLine("  Amenities are processed");
+                        //Console.WriteLine("  Amenities are processed");
                     }
 
 
@@ -234,7 +308,7 @@ namespace OrbitzExportStaticFile
                             result.HotelInfo.Images.Add(image);
                         }
 
-                        Console.WriteLine("  Medias are processed");
+                        //Console.WriteLine("  Medias are processed");
                     }
 
                     if (node.Name == "facilities")
@@ -258,7 +332,7 @@ namespace OrbitzExportStaticFile
                             result.HotelInfo.Facilities.Add(facility);
                         }
 
-                        Console.WriteLine("  Facilities are processed");
+                        //Console.WriteLine("  Facilities are processed");
                     }
 
                     if (node.Name == "userReviews")
@@ -280,7 +354,7 @@ namespace OrbitzExportStaticFile
                             }
                         }
 
-                        Console.WriteLine("  UserReviews is processed");
+                        //Console.WriteLine("  UserReviews is processed");
                     }
 
                     if (node.Name == "chainCode"){
