@@ -374,7 +374,7 @@ namespace OrbitzExportStaticFile
 
         private string getFullPathFileName(long hotelId, string extension)
         {
-            return config.OutputJsonFolder + "\\" + config.LanguageCode + "_" + hotelId.ToString() + "." + extension;
+            return config.OutputFolder + "\\" + config.LanguageCode + "_" + hotelId.ToString() + "." + extension;
         }
     }
 }

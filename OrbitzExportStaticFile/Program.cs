@@ -58,13 +58,14 @@ namespace OrbitzExportStaticFile
             //manager.DoStart();
 
             //xml
-            //manager.DoStart2();
+            manager.DoStart2();
 
             //special case for aileen
-            manager.DoStart3();
+            //manager.DoStart3();
 
-            Console.ReadLine();
+            
             Console.WriteLine("\n\nFinishing app... press enter to exit program..");
+            Console.ReadLine();
 
         }
 

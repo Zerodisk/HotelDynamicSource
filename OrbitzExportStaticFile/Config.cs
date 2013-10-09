@@ -12,7 +12,7 @@ namespace OrbitzExportStaticFile
             get { return ConfigurationManager.AppSettings["inputXmlFile"]; }
         }
 
-        public string OutputJsonFolder
+        public string OutputFolder
         {
             get { return ConfigurationManager.AppSettings["outputFolder"]; }
         }
